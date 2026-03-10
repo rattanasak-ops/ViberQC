@@ -10,19 +10,30 @@ import Credentials from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/lib/db";
 
+const hasDB = !!process.env.DATABASE_URL;
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: DrizzleAdapter(db),
+  ...(hasDB ? { adapter: DrizzleAdapter(db) } : {}),
   session: { strategy: "jwt" },
+  trustHost: true,
 
   providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-    GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    }),
+    ...(process.env.GOOGLE_CLIENT_ID
+      ? [
+          Google({
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+          }),
+        ]
+      : []),
+    ...(process.env.GITHUB_CLIENT_ID
+      ? [
+          GitHub({
+            clientId: process.env.GITHUB_CLIENT_ID!,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+          }),
+        ]
+      : []),
     Credentials({
       name: "Email",
       credentials: {
@@ -31,6 +42,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        if (!hasDB) {
+          // Demo mode: allow test@viberqc.com / password123
+          if (
+            credentials.email === "test@viberqc.com" &&
+            credentials.password === "password123"
+          ) {
+            return {
+              id: "demo-user",
+              email: "test@viberqc.com",
+              name: "Demo User",
+              image: null,
+            };
+          }
           return null;
         }
 

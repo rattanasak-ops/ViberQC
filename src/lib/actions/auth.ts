@@ -62,6 +62,10 @@ export async function registerWithCredentials(formData: FormData) {
     return { error: "Password must be at least 8 characters" };
   }
 
+  if (!process.env.DATABASE_URL) {
+    return { error: "Registration is not available in demo mode. Use test@viberqc.com / password123 to log in." };
+  }
+
   // Check if user already exists
   const existing = await db.query.users.findFirst({
     where: eq(users.email, email),
@@ -72,7 +76,6 @@ export async function registerWithCredentials(formData: FormData) {
   }
 
   // Hash password
-  // Using dynamic import to avoid bundling bcryptjs on client
   const bcrypt = await import("bcryptjs");
   const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -107,13 +110,17 @@ export async function requestPasswordReset(formData: FormData) {
     return { error: "Email is required" };
   }
 
+  if (!process.env.DATABASE_URL) {
+    return { success: "If an account exists, you'll receive a reset link." };
+  }
+
   // Check if user exists (don't reveal if they do or not)
   const user = await db.query.users.findFirst({
     where: eq(users.email, email),
   });
 
   // Always return success to prevent email enumeration
-  // TODO: Phase 4 — Send actual reset email via Resend
+  // TODO: Send actual reset email via Resend
   if (user) {
     console.log(`[auth] Password reset requested for ${email}`);
   }
