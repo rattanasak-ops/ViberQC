@@ -25,6 +25,8 @@ const publicPaths = [
   "/api/waitlist",
   "/api/webhook",
   "/api/scan/start",
+  "/api/scan/run",
+  "/scan",
   "/api/og",
   "/api/badge",
   "/sitemap.xml",
@@ -34,7 +36,6 @@ const publicPaths = [
 const protectedPaths = [
   "/dashboard",
   "/projects",
-  "/scan",
   "/reports",
   "/history",
   "/settings",

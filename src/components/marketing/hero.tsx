@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, Zap, ScanLine } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Logo } from "@/components/shared/logo";
@@ -51,8 +51,8 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Scan your app for Code, Performance, and Security issues in 30 seconds.
-            AI-powered. All in one place.
+            Scan your app for Performance, Security, SEO & Accessibility issues in 30 seconds.
+            No login required. AI-powered analysis.
           </motion.p>
 
           {/* CTAs */}
@@ -62,13 +62,35 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Link href="/register" className={cn(buttonVariants({ size: "lg" }), "h-12 px-8 text-base")}>
-              Try Free Scan
+            <Link href="/scan" className={cn(buttonVariants({ size: "lg" }), "h-14 px-10 text-lg")}>
+              <ScanLine className="mr-2 h-5 w-5" />
+              Free Scan Now
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link href="/how-it-works" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-12 px-8 text-base")}>
               See How It Works
             </Link>
+          </motion.div>
+
+          {/* Trust indicators */}
+          <motion.div
+            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <span className="flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-green-500" />
+              8 Quality Phases
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-green-500" />
+              30-Second Scan
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-green-500" />
+              Free — No Login
+            </span>
           </motion.div>
 
           {/* Animated Logo */}
