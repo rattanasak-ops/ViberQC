@@ -10,9 +10,11 @@ import { users, subscriptions } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-02-25.clover",
-});
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: "2026-02-25.clover",
+  });
+}
 
 /** Helper: get period dates from a subscription's first item */
 function getSubscriptionPeriod(sub: Stripe.Subscription) {
@@ -34,7 +36,7 @@ export async function POST(request: NextRequest) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
+    event = getStripe().webhooks.constructEvent(
       body,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
@@ -57,7 +59,7 @@ export async function POST(request: NextRequest) {
 
           // Create subscription record
           if (session.subscription) {
-            const sub = await stripe.subscriptions.retrieve(session.subscription as string);
+            const sub = await getStripe().subscriptions.retrieve(session.subscription as string);
             const period = getSubscriptionPeriod(sub);
             await db.insert(subscriptions).values({
               userId,
