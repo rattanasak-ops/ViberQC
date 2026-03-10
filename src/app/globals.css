@@ -45,75 +45,96 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ViberQC Custom Colors — AI Precision Palette B */
+  --color-vqc-primary: #6C63FF;
+  --color-vqc-primary-light: #8D83FF;
+  --color-vqc-primary-dark: #5046E5;
+  --color-vqc-bg-dark: #0F0B2E;
+  --color-vqc-bg-dark-secondary: #2D1B69;
+  --color-vqc-success: #22C55E;
+  --color-vqc-error: #EF4444;
+  --color-vqc-warning: #FFB800;
+  --color-vqc-score-excellent: #22C55E;
+  --color-vqc-score-good: #84CC16;
+  --color-vqc-score-average: #FFB800;
+  --color-vqc-score-poor: #F97316;
+  --color-vqc-score-critical: #EF4444;
 }
 
+/* ============================================================
+   Light Theme — ViberQC AI Precision
+   ============================================================ */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.58 0.22 27);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: #FAFBFE;
+  --foreground: #1E293B;
+  --card: #FFFFFF;
+  --card-foreground: #1E293B;
+  --popover: #FFFFFF;
+  --popover-foreground: #1E293B;
+  --primary: #6C63FF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F0FF;
+  --secondary-foreground: #2D1B69;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #F1F0FF;
+  --accent-foreground: #6C63FF;
+  --destructive: #EF4444;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #6C63FF;
+  --chart-1: #6C63FF;
+  --chart-2: #22C55E;
+  --chart-3: #FFB800;
+  --chart-4: #EF4444;
+  --chart-5: #8D83FF;
+  --radius: 0.75rem;
+  --sidebar: #FAFBFE;
+  --sidebar-foreground: #1E293B;
+  --sidebar-primary: #6C63FF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F1F0FF;
+  --sidebar-accent-foreground: #6C63FF;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #6C63FF;
 }
 
+/* ============================================================
+   Dark Theme — ViberQC AI Precision (Deep Purple)
+   ============================================================ */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.87 0.00 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.371 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #0F0B2E;
+  --foreground: #E2E8F0;
+  --card: #1A1147;
+  --card-foreground: #E2E8F0;
+  --popover: #1A1147;
+  --popover-foreground: #E2E8F0;
+  --primary: #6C63FF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #2D1B69;
+  --secondary-foreground: #E2E8F0;
+  --muted: #2D1B69;
+  --muted-foreground: #94A3B8;
+  --accent: #2D1B69;
+  --accent-foreground: #B3ACFF;
+  --destructive: #EF4444;
+  --border: rgba(108, 99, 255, 0.15);
+  --input: rgba(108, 99, 255, 0.2);
+  --ring: #6C63FF;
+  --chart-1: #6C63FF;
+  --chart-2: #22C55E;
+  --chart-3: #FFB800;
+  --chart-4: #EF4444;
+  --chart-5: #8D83FF;
+  --sidebar: #1A1147;
+  --sidebar-foreground: #E2E8F0;
+  --sidebar-primary: #6C63FF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2D1B69;
+  --sidebar-accent-foreground: #B3ACFF;
+  --sidebar-border: rgba(108, 99, 255, 0.15);
+  --sidebar-ring: #6C63FF;
 }
 
 @layer base {

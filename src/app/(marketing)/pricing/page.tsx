@@ -1,16 +1,17 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { Hero } from "@/components/marketing/hero";
-import { FeaturesGrid } from "@/components/marketing/features-grid";
 import { PricingCards } from "@/components/marketing/pricing-cards";
 
-export default function HomePage() {
+export const metadata = {
+  title: "Pricing",
+  description: "Simple, transparent pricing for ViberQC. Start free, upgrade when you need more.",
+};
+
+export default function PricingPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-1">
-        <Hero />
-        <FeaturesGrid />
         <PricingCards />
       </main>
       <Footer />
