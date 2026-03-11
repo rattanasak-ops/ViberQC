@@ -11,6 +11,7 @@ import {
   Settings,
 } from "lucide-react";
 import { Logo } from "@/components/shared/logo";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const sidebarLinks = [
@@ -60,6 +61,10 @@ export function AppSidebar() {
 
         {/* Bottom section */}
         <div className="border-t border-border/40 p-4">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">Theme</span>
+            <ThemeToggle />
+          </div>
           <div className="rounded-lg bg-primary/5 p-3">
             <p className="text-xs font-medium text-primary">Free Plan</p>
             <p className="mt-1 text-xs text-muted-foreground">
