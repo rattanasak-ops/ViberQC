@@ -36,6 +36,7 @@ interface ScanResult {
   issues: ScanIssue[];
   durationMs: number;
   scannedAt: string;
+  shareToken?: string;
 }
 
 const phaseIcons = {
@@ -442,7 +443,7 @@ export default function PublicScanPage() {
                   <ShareCard
                     score={result.scores.overall}
                     url={result.url}
-                    shareUrl={typeof window !== "undefined" ? window.location.href : ""}
+                    shareUrl={typeof window !== "undefined" && result.shareToken ? `${window.location.origin}/r/${result.shareToken}` : ""}
                   />
                 </motion.div>
 

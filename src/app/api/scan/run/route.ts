@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { runScan } from "@/lib/scan/orchestrator";
+import { saveScanResult } from "@/lib/scan/store";
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,6 +40,16 @@ export async function POST(request: NextRequest) {
 
     // Run the actual scan
     const result = await runScan(url);
+    const scannedAt = new Date().toISOString();
+
+    // Save for sharing
+    const shareToken = saveScanResult({
+      url,
+      scores: result.scores,
+      issues: result.issues,
+      durationMs: result.durationMs,
+      scannedAt,
+    });
 
     return NextResponse.json({
       url,
@@ -46,7 +57,8 @@ export async function POST(request: NextRequest) {
       scores: result.scores,
       issues: result.issues,
       durationMs: result.durationMs,
-      scannedAt: new Date().toISOString(),
+      scannedAt,
+      shareToken,
     });
   } catch (error) {
     console.error("[scan/run] Error:", error);
