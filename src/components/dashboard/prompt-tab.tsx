@@ -61,7 +61,7 @@ function HighlightedTemplate({ text }: { text: string }) {
         /^\{[^}]+\}$/.test(part) ? (
           <span
             key={i}
-            className="rounded bg-[#6C63FF]/20 px-1 font-semibold text-[#6C63FF]"
+            className="rounded bg-primary/20 px-1 font-semibold text-primary"
           >
             {part}
           </span>
@@ -139,8 +139,8 @@ function PromptListItem({
         onClick={onSelect}
         className={`w-full rounded-lg border p-3 text-left transition-all ${
           isSelected
-            ? "border-[#6C63FF] bg-[#6C63FF]/10 ring-1 ring-[#6C63FF]/40"
-            : "border-border bg-card hover:border-[#6C63FF]/40 hover:bg-[#1A1147]/50"
+            ? "border-primary bg-primary/10 ring-1 ring-primary/40"
+            : "border-border bg-card hover:border-primary/40 hover:bg-muted/50"
         }`}
       >
         <div className="mb-1 flex items-center gap-2">
@@ -223,7 +223,7 @@ function PromptPreview({
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <FileCode className="size-5 text-[#6C63FF]" />
+          <FileCode className="size-5 text-primary" />
           <h3 className="text-lg font-semibold text-foreground">
             {prompt.name}
           </h3>
@@ -244,10 +244,10 @@ function PromptPreview({
 
       {/* Variable form */}
       {variables.length > 0 && (
-        <Card className="border-border/50 bg-[#1A1147]/40">
+        <Card className="border-border/50 bg-muted/40">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium">
-              <Terminal className="mr-1.5 inline size-4 text-[#6C63FF]" />
+              <Terminal className="mr-1.5 inline size-4 text-primary" />
               Variables ({variables.length})
             </CardTitle>
           </CardHeader>
@@ -277,7 +277,7 @@ function PromptPreview({
 
       {/* Template preview */}
       <div className="relative">
-        <div className="flex items-center justify-between rounded-t-lg border border-b-0 border-border/50 bg-[#1A1147]/60 px-3 py-2">
+        <div className="flex items-center justify-between rounded-t-lg border border-b-0 border-border/50 bg-muted/60 px-3 py-2">
           <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <Code className="size-3.5" />
             Prompt Template
@@ -393,8 +393,8 @@ export function PromptTab() {
     <div className="flex flex-col gap-6">
       {/* Stats bar */}
       <div className="flex flex-wrap items-center gap-4">
-        <div className="flex items-center gap-2 rounded-lg bg-[#1A1147]/60 px-3 py-1.5">
-          <Sparkles className="size-4 text-[#6C63FF]" />
+        <div className="flex items-center gap-2 rounded-lg bg-muted/60 px-3 py-1.5">
+          <Sparkles className="size-4 text-primary" />
           <span className="text-sm font-medium text-foreground">
             {stats.total} Prompts
           </span>
@@ -423,7 +423,7 @@ export function PromptTab() {
             placeholder="Search prompts..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="h-9 pl-9 bg-[#1A1147]/40"
+            className="h-9 pl-9 bg-muted/40"
           />
         </div>
         <CategoryFilters active={categoryFilter} onSelect={setCategoryFilter} />

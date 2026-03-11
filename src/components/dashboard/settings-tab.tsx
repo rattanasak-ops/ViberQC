@@ -143,8 +143,8 @@ export function SettingsTab() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <div className="rounded-lg p-2" style={{ backgroundColor: "#6C63FF15" }}>
-                <FolderKanban className="h-5 w-5" style={{ color: "#6C63FF" }} />
+              <div className="rounded-lg bg-primary/10 p-2">
+                <FolderKanban className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <span>Project Information</span>
@@ -180,8 +180,8 @@ export function SettingsTab() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <div className="rounded-lg p-2" style={{ backgroundColor: "#22C55E15" }}>
-                <Clock className="h-5 w-5" style={{ color: "#22C55E" }} />
+              <div className="rounded-lg bg-emerald-500/10 p-2">
+                <Clock className="h-5 w-5 text-emerald-500" />
               </div>
               <div>
                 <span>Scan Settings</span>
@@ -269,8 +269,8 @@ export function SettingsTab() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <div className="rounded-lg p-2" style={{ backgroundColor: "#FFB80015" }}>
-                <Key className="h-5 w-5" style={{ color: "#FFB800" }} />
+              <div className="rounded-lg bg-amber-500/10 p-2">
+                <Key className="h-5 w-5 text-amber-500" />
               </div>
               <div>
                 <span>API & Integrations</span>

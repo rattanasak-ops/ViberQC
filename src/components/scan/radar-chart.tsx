@@ -90,9 +90,9 @@ export function RadarChart({ scores, size = 280, animated = true }: RadarChartPr
         {animated ? (
           <motion.polygon
             points={scorePoints}
-            fill="#6C63FF"
+            fill="var(--color-vqc-primary)"
             fillOpacity={0.2}
-            stroke="#6C63FF"
+            stroke="var(--color-vqc-primary)"
             strokeWidth={2}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -102,9 +102,9 @@ export function RadarChart({ scores, size = 280, animated = true }: RadarChartPr
         ) : (
           <polygon
             points={scorePoints}
-            fill="#6C63FF"
+            fill="var(--color-vqc-primary)"
             fillOpacity={0.2}
-            stroke="#6C63FF"
+            stroke="var(--color-vqc-primary)"
             strokeWidth={2}
           />
         )}

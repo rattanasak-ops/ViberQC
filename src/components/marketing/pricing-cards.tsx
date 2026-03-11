@@ -132,7 +132,7 @@ export function PricingCards() {
               >
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-primary text-white">Most Popular</Badge>
+                    <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
                   </div>
                 )}
 

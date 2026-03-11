@@ -119,8 +119,8 @@ function CircularProgress({
         />
         <defs>
           <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#6C63FF" />
-            <stop offset="100%" stopColor="#8D83FF" />
+            <stop offset="0%" stopColor="var(--color-vqc-primary)" />
+            <stop offset="100%" stopColor="var(--color-vqc-primary-light)" />
           </linearGradient>
         </defs>
       </svg>
@@ -295,7 +295,7 @@ function ChecklistItemRow({
           <div className="ml-5 mt-2 flex flex-wrap items-center gap-1.5">
             <SeverityBadge severity={item.severity} />
             {item.autoDetectable && (
-              <span className="inline-flex items-center gap-1 rounded-full border border-[#6C63FF]/30 bg-[#6C63FF]/10 px-2 py-0.5 text-xs font-medium text-[#8D83FF]">
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs font-medium text-accent-foreground">
                 <Zap className="h-3 w-3" />
                 Auto
               </span>
@@ -513,7 +513,7 @@ export function ChecklistTab() {
                     label="Total Items"
                     value={stats.total}
                     icon={ClipboardList}
-                    color="bg-[#6C63FF]/20 text-[#6C63FF]"
+                    color="bg-primary/20 text-primary"
                   />
                   <StatCard
                     label="Completed"
@@ -626,7 +626,7 @@ export function ChecklistTab() {
                       onClick={() => setActivePhase("all")}
                       className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
                         activePhase === "all"
-                          ? "bg-[#6C63FF] text-white"
+                          ? "bg-primary text-primary-foreground"
                           : "bg-muted/30 text-muted-foreground hover:bg-muted/50"
                       }`}
                     >
@@ -640,7 +640,7 @@ export function ChecklistTab() {
                           onClick={() => setActivePhase(phase.id)}
                           className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
                             activePhase === phase.id
-                              ? "text-white"
+                              ? "text-primary-foreground"
                               : "bg-muted/30 text-muted-foreground hover:bg-muted/50"
                           }`}
                           style={
@@ -672,7 +672,7 @@ export function ChecklistTab() {
                         className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
                           severityFilter === sev
                             ? sev === "all"
-                              ? "bg-[#6C63FF] text-white"
+                              ? "bg-primary text-primary-foreground"
                               : `${SEVERITY_CONFIG[sev].color} border`
                             : "bg-muted/30 text-muted-foreground hover:bg-muted/50"
                         }`}
