@@ -1,6 +1,12 @@
 "use client";
 
-import { AlertTriangle, AlertCircle, Info, CheckCircle, XCircle } from "lucide-react";
+import {
+  AlertTriangle,
+  AlertCircle,
+  Info,
+  CheckCircle,
+  XCircle,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import type { ScanIssue, IssueSeverity } from "@/types";
@@ -10,11 +16,36 @@ const severityConfig: Record<
   IssueSeverity,
   { icon: typeof AlertTriangle; color: string; bg: string; label: string }
 > = {
-  critical: { icon: XCircle, color: "text-red-500", bg: "bg-red-500/10", label: "Critical" },
-  high: { icon: AlertTriangle, color: "text-orange-500", bg: "bg-orange-500/10", label: "High" },
-  medium: { icon: AlertCircle, color: "text-yellow-500", bg: "bg-yellow-500/10", label: "Medium" },
-  low: { icon: Info, color: "text-blue-500", bg: "bg-blue-500/10", label: "Low" },
-  info: { icon: CheckCircle, color: "text-green-500", bg: "bg-green-500/10", label: "Info" },
+  critical: {
+    icon: XCircle,
+    color: "text-red-500",
+    bg: "bg-red-500/10",
+    label: "Critical",
+  },
+  high: {
+    icon: AlertTriangle,
+    color: "text-orange-500",
+    bg: "bg-orange-500/10",
+    label: "High",
+  },
+  medium: {
+    icon: AlertCircle,
+    color: "text-yellow-500",
+    bg: "bg-yellow-500/10",
+    label: "Medium",
+  },
+  low: {
+    icon: Info,
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
+    label: "Low",
+  },
+  info: {
+    icon: CheckCircle,
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+    label: "Info",
+  },
 };
 
 interface IssueListProps {
@@ -29,7 +60,9 @@ export function IssueList({ issues, maxItems }: IssueListProps) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-center">
         <CheckCircle className="h-12 w-12 text-green-500" />
-        <p className="mt-2 text-sm font-medium text-foreground">All checks passed!</p>
+        <p className="mt-2 text-sm font-medium text-foreground">
+          All checks passed!
+        </p>
         <p className="text-xs text-muted-foreground">No issues found</p>
       </div>
     );

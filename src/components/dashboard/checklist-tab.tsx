@@ -118,7 +118,13 @@ function CircularProgress({
           transition={{ duration: 1, ease: "easeOut" }}
         />
         <defs>
-          <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient
+            id="progressGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
             <stop offset="0%" stopColor="var(--color-vqc-primary)" />
             <stop offset="100%" stopColor="var(--color-vqc-primary-light)" />
           </linearGradient>
@@ -169,7 +175,9 @@ function StatCard({
       animate={{ opacity: 1, y: 0 }}
       className="flex items-center gap-3 rounded-xl border border-border/50 bg-card/50 px-4 py-3 backdrop-blur-sm"
     >
-      <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${color}`}>
+      <div
+        className={`flex h-9 w-9 items-center justify-center rounded-lg ${color}`}
+      >
         <Icon className="h-4 w-4" />
       </div>
       <div>
@@ -368,36 +376,32 @@ export function ChecklistTab() {
     });
   }, []);
 
-  const markAllInPhase = useCallback(
-    (phase: ChecklistPhase) => {
-      const items = getPhaseItems(phase);
-      setCheckedItems((prev) => {
-        const next = new Set(prev);
-        items.forEach((item) => next.add(item.id));
-        return next;
-      });
-    },
-    []
-  );
+  const markAllInPhase = useCallback((phase: ChecklistPhase) => {
+    const items = getPhaseItems(phase);
+    setCheckedItems((prev) => {
+      const next = new Set(prev);
+      items.forEach((item) => next.add(item.id));
+      return next;
+    });
+  }, []);
 
-  const resetPhase = useCallback(
-    (phase: ChecklistPhase) => {
-      const items = getPhaseItems(phase);
-      setCheckedItems((prev) => {
-        const next = new Set(prev);
-        items.forEach((item) => next.delete(item.id));
-        return next;
-      });
-    },
-    []
-  );
+  const resetPhase = useCallback((phase: ChecklistPhase) => {
+    const items = getPhaseItems(phase);
+    setCheckedItems((prev) => {
+      const next = new Set(prev);
+      items.forEach((item) => next.delete(item.id));
+      return next;
+    });
+  }, []);
 
   const exportAsJson = useCallback(() => {
     const exportData = {
       exportedAt: new Date().toISOString(),
       totalItems: CHECKLIST_ITEMS.length,
       checkedCount: checkedItems.size,
-      percentage: Math.round((checkedItems.size / CHECKLIST_ITEMS.length) * 100),
+      percentage: Math.round(
+        (checkedItems.size / CHECKLIST_ITEMS.length) * 100,
+      ),
       phases: PHASES.map((phase) => {
         const items = getPhaseItems(phase.id);
         const checked = items.filter((item) => checkedItems.has(item.id));
@@ -447,7 +451,7 @@ export function ChecklistTab() {
           item.title.toLowerCase().includes(query) ||
           item.titleTh.includes(query) ||
           item.description.toLowerCase().includes(query) ||
-          (item.tool && item.tool.toLowerCase().includes(query))
+          (item.tool && item.tool.toLowerCase().includes(query)),
       );
     }
 
@@ -459,10 +463,10 @@ export function ChecklistTab() {
     const total = CHECKLIST_ITEMS.length;
     const checked = checkedItems.size;
     const criticalRemaining = CHECKLIST_ITEMS.filter(
-      (item) => item.severity === "critical" && !checkedItems.has(item.id)
+      (item) => item.severity === "critical" && !checkedItems.has(item.id),
     ).length;
     const autoDetectable = CHECKLIST_ITEMS.filter(
-      (item) => item.autoDetectable
+      (item) => item.autoDetectable,
     ).length;
 
     return { total, checked, criticalRemaining, autoDetectable };
@@ -691,15 +695,14 @@ export function ChecklistTab() {
       {/* Checklist items grouped by phase */}
       <div className="space-y-6">
         {PHASES.filter(
-          (phase) =>
-            activePhase === "all" || activePhase === phase.id
+          (phase) => activePhase === "all" || activePhase === phase.id,
         ).map((phase) => {
           const items = groupedItems[phase.id];
           if (items.length === 0) return null;
 
           const Icon = PHASE_ICONS[phase.icon] || ClipboardList;
           const phaseChecked = items.filter((item) =>
-            checkedItems.has(item.id)
+            checkedItems.has(item.id),
           ).length;
 
           return (
@@ -786,9 +789,7 @@ export function ChecklistTab() {
           className="flex flex-col items-center justify-center py-16 text-center"
         >
           <SearchIcon className="mb-4 h-12 w-12 text-muted-foreground/30" />
-          <p className="text-lg font-medium text-foreground">
-            No items found
-          </p>
+          <p className="text-lg font-medium text-foreground">No items found</p>
           <p className="mt-1 text-sm text-muted-foreground">
             Try adjusting your search or filters
           </p>

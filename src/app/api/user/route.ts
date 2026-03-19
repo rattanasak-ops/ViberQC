@@ -24,11 +24,14 @@ export async function GET() {
     }
 
     // Don't expose hashed password
-    const { hashedPassword, ...safeUser } = user;
+    const { hashedPassword: _hp, ...safeUser } = user;
     return NextResponse.json(safeUser);
   } catch (error) {
     console.error("[user GET] Error:", error);
-    return NextResponse.json({ error: "Failed to fetch user" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch user" },
+      { status: 500 },
+    );
   }
 }
 
@@ -54,10 +57,13 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    const { hashedPassword, ...safeUser } = updated;
+    const { hashedPassword: _hp, ...safeUser } = updated;
     return NextResponse.json(safeUser);
   } catch (error) {
     console.error("[user PATCH] Error:", error);
-    return NextResponse.json({ error: "Failed to update user" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to update user" },
+      { status: 500 },
+    );
   }
 }

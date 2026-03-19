@@ -25,11 +25,41 @@ export type PromptCategory =
   | "optimize";
 
 export const PROMPT_CATEGORIES = [
-  { id: "audit" as const, name: "Audit & Analyze", nameTh: "ตรวจสอบและวิเคราะห์", icon: "Search", color: "#6C63FF" },
-  { id: "fix" as const, name: "Fix & Repair", nameTh: "แก้ไขและซ่อมแซม", icon: "Wrench", color: "#22C55E" },
-  { id: "generate" as const, name: "Generate Code", nameTh: "สร้างโค้ด", icon: "Code", color: "#FFB800" },
-  { id: "review" as const, name: "Code Review", nameTh: "รีวิวโค้ด", icon: "Eye", color: "#F97316" },
-  { id: "optimize" as const, name: "Optimize", nameTh: "เพิ่มประสิทธิภาพ", icon: "Zap", color: "#84CC16" },
+  {
+    id: "audit" as const,
+    name: "Audit & Analyze",
+    nameTh: "ตรวจสอบและวิเคราะห์",
+    icon: "Search",
+    color: "#6C63FF",
+  },
+  {
+    id: "fix" as const,
+    name: "Fix & Repair",
+    nameTh: "แก้ไขและซ่อมแซม",
+    icon: "Wrench",
+    color: "#22C55E",
+  },
+  {
+    id: "generate" as const,
+    name: "Generate Code",
+    nameTh: "สร้างโค้ด",
+    icon: "Code",
+    color: "#FFB800",
+  },
+  {
+    id: "review" as const,
+    name: "Code Review",
+    nameTh: "รีวิวโค้ด",
+    icon: "Eye",
+    color: "#F97316",
+  },
+  {
+    id: "optimize" as const,
+    name: "Optimize",
+    nameTh: "เพิ่มประสิทธิภาพ",
+    icon: "Zap",
+    color: "#84CC16",
+  },
 ];
 
 export const PROMPT_TEMPLATES: PromptTemplate[] = [
@@ -40,7 +70,8 @@ export const PROMPT_TEMPLATES: PromptTemplate[] = [
     id: "mega-audit",
     name: "360° Quality Audit",
     nameTh: "ตรวจสอบคุณภาพ 360°",
-    description: "Complete quality audit across all 8 phases — the most comprehensive prompt",
+    description:
+      "Complete quality audit across all 8 phases — the most comprehensive prompt",
     category: "audit",
     template: `You are a senior QA engineer performing a comprehensive 360° quality audit on a web application.
 
@@ -249,7 +280,14 @@ Requirements:
 5. Note any side effects to watch for
 
 Format: Include file paths, line numbers, and copy-paste ready code.`,
-    variables: ["issueTitle", "issueSeverity", "issuePhase", "issueDescription", "techStack", "filePath"],
+    variables: [
+      "issueTitle",
+      "issueSeverity",
+      "issuePhase",
+      "issueDescription",
+      "techStack",
+      "filePath",
+    ],
     tags: ["fix", "specific"],
   },
   {
@@ -475,7 +513,9 @@ Provide optimized Drizzle queries and index creation SQL.`,
 ];
 
 // Helper functions
-export function getPromptsByCategory(category: PromptCategory): PromptTemplate[] {
+export function getPromptsByCategory(
+  category: PromptCategory,
+): PromptTemplate[] {
   return PROMPT_TEMPLATES.filter((p) => p.category === category);
 }
 
@@ -483,7 +523,10 @@ export function getPromptsByPhase(phase: ChecklistPhase): PromptTemplate[] {
   return PROMPT_TEMPLATES.filter((p) => p.phases?.includes(phase));
 }
 
-export function fillPromptTemplate(template: string, variables: Record<string, string>): string {
+export function fillPromptTemplate(
+  template: string,
+  variables: Record<string, string>,
+): string {
   let filled = template;
   for (const [key, value] of Object.entries(variables)) {
     filled = filled.replaceAll(`{${key}}`, value);

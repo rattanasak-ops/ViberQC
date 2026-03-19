@@ -18,7 +18,9 @@ export default function Error({
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
       <AlertTriangle className="h-12 w-12 text-destructive" />
-      <h1 className="mt-4 text-2xl font-bold text-foreground">Something went wrong</h1>
+      <h1 className="mt-4 text-2xl font-bold text-foreground">
+        Something went wrong
+      </h1>
       <p className="mt-2 text-sm text-muted-foreground">
         An unexpected error occurred. Please try again.
       </p>

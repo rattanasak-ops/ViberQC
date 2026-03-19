@@ -1,9 +1,12 @@
 // ============================================================
 // ViberQC — Middleware (Auth protection)
 // Protects app routes, redirects unauthenticated users to /login
+// Uses NextAuth auth() to verify JWT signature — not just cookie existence
 // ============================================================
 
-import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 const publicPaths = [
   "/",
@@ -33,6 +36,10 @@ const publicPaths = [
   "/api/badge",
   "/sitemap.xml",
   "/robots.txt",
+  "/addons",
+  "/api/addons",
+  "/api/reports/generate",
+  "/api/scan/ai-fix-public",
 ];
 
 const protectedPaths = [
@@ -41,54 +48,50 @@ const protectedPaths = [
   "/reports",
   "/history",
   "/settings",
+  "/addons/my",
 ];
 
 function isPublicPath(pathname: string): boolean {
+  // Check protected first — protected takes priority over public prefix
+  if (isProtectedPath(pathname)) return false;
   return publicPaths.some(
-    (path) => pathname === path || pathname.startsWith(path + "/")
+    (path) => pathname === path || pathname.startsWith(path + "/"),
   );
 }
 
 function isProtectedPath(pathname: string): boolean {
   return protectedPaths.some(
-    (path) => pathname === path || pathname.startsWith(path + "/")
+    (path) => pathname === path || pathname.startsWith(path + "/"),
   );
 }
 
-export default async function middleware(request: NextRequest) {
+export default auth(function middleware(request) {
   const { pathname } = request.nextUrl;
+  const session = request.auth;
 
   // Public paths — always allow
   if (isPublicPath(pathname)) {
     return NextResponse.next();
   }
 
-  // Protected paths — check for session token
+  // Protected paths — require valid session
   if (isProtectedPath(pathname)) {
-    const token =
-      request.cookies.get("authjs.session-token")?.value ||
-      request.cookies.get("__Secure-authjs.session-token")?.value;
-
-    if (!token) {
+    if (!session?.user) {
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(loginUrl);
     }
   }
 
-  // Protected API routes — check for session token
+  // Protected API routes — require valid session
   if (pathname.startsWith("/api/") && !isPublicPath(pathname)) {
-    const token =
-      request.cookies.get("authjs.session-token")?.value ||
-      request.cookies.get("__Secure-authjs.session-token")?.value;
-
-    if (!token) {
+    if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }
 
   return NextResponse.next();
-}
+}) as (request: NextRequest) => Promise<NextResponse>;
 
 export const config = {
   matcher: ["/((?!_next|.*\\..*).*)"],

@@ -1,13 +1,53 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { OverviewTab } from "@/components/dashboard/overview-tab";
-import { ChecklistTab } from "@/components/dashboard/checklist-tab";
-import { ToolsTab } from "@/components/dashboard/tools-tab";
-import { PromptTab } from "@/components/dashboard/prompt-tab";
-import { SettingsTab } from "@/components/dashboard/settings-tab";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const TabSkeleton = () => (
+  <div className="space-y-4 pt-4">
+    <Skeleton className="h-32 w-full rounded-xl" />
+    <Skeleton className="h-48 w-full rounded-xl" />
+  </div>
+);
+
+const OverviewTab = dynamic(
+  () =>
+    import("@/components/dashboard/overview-tab").then((m) => ({
+      default: m.OverviewTab,
+    })),
+  { loading: TabSkeleton },
+);
+const ChecklistTab = dynamic(
+  () =>
+    import("@/components/dashboard/checklist-tab").then((m) => ({
+      default: m.ChecklistTab,
+    })),
+  { loading: TabSkeleton },
+);
+const ToolsTab = dynamic(
+  () =>
+    import("@/components/dashboard/tools-tab").then((m) => ({
+      default: m.ToolsTab,
+    })),
+  { loading: TabSkeleton },
+);
+const PromptTab = dynamic(
+  () =>
+    import("@/components/dashboard/prompt-tab").then((m) => ({
+      default: m.PromptTab,
+    })),
+  { loading: TabSkeleton },
+);
+const SettingsTab = dynamic(
+  () =>
+    import("@/components/dashboard/settings-tab").then((m) => ({
+      default: m.SettingsTab,
+    })),
+  { loading: TabSkeleton },
+);
 import {
   LayoutDashboard,
   ListChecks,
@@ -18,11 +58,41 @@ import {
 } from "lucide-react";
 
 const tabs = [
-  { id: "overview", label: "Overview", labelTh: "ภาพรวม", icon: LayoutDashboard, color: "#6C63FF" },
-  { id: "checklist", label: "Checklist", labelTh: "รายการตรวจสอบ", icon: ListChecks, color: "#22C55E" },
-  { id: "tools", label: "Tools", labelTh: "เครื่องมือ", icon: Wrench, color: "#FFB800" },
-  { id: "prompts", label: "AI Prompts", labelTh: "AI Prompts", icon: Sparkles, color: "#8D83FF" },
-  { id: "settings", label: "Settings", labelTh: "ตั้งค่า", icon: Settings, color: "#84CC16" },
+  {
+    id: "overview",
+    label: "Overview",
+    labelTh: "ภาพรวม",
+    icon: LayoutDashboard,
+    color: "#6C63FF",
+  },
+  {
+    id: "checklist",
+    label: "Checklist",
+    labelTh: "รายการตรวจสอบ",
+    icon: ListChecks,
+    color: "#22C55E",
+  },
+  {
+    id: "tools",
+    label: "Tools",
+    labelTh: "เครื่องมือ",
+    icon: Wrench,
+    color: "#FFB800",
+  },
+  {
+    id: "prompts",
+    label: "AI Prompts",
+    labelTh: "AI Prompts",
+    icon: Sparkles,
+    color: "#8D83FF",
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    labelTh: "ตั้งค่า",
+    icon: Settings,
+    color: "#84CC16",
+  },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
@@ -72,7 +142,7 @@ export default function DashboardPage() {
                   "relative flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all",
                   isActive
                     ? "bg-background text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                    : "text-muted-foreground hover:text-foreground hover:bg-background/50",
                 )}
               >
                 <Icon

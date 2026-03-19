@@ -9,13 +9,23 @@ import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/lib/db";
+import { users, accounts, sessions, verificationTokens } from "@/lib/db/schema";
 
 const hasDB = !!process.env.DATABASE_URL;
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  ...(hasDB ? { adapter: DrizzleAdapter(db) } : {}),
+  ...(hasDB
+    ? {
+        adapter: DrizzleAdapter(db, {
+          usersTable: users,
+          accountsTable: accounts,
+          sessionsTable: sessions,
+          verificationTokensTable: verificationTokens,
+        }),
+      }
+    : {}),
   session: { strategy: "jwt" },
-  trustHost: true,
+  trustHost: process.env.NODE_ENV === "development",
 
   providers: [
     ...(process.env.GOOGLE_CLIENT_ID
@@ -23,6 +33,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           Google({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            authorization: {
+              params: {
+                prompt: "consent",
+                access_type: "offline",
+                response_type: "code",
+              },
+            },
           }),
         ]
       : []),
@@ -46,14 +63,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         if (!hasDB) {
-          // Demo mode: allow test@viberqc.com / password123
+          // Demo mode: hardcoded test account
+          const demoEmail = process.env.DEMO_EMAIL ?? "test@viberqc.com";
+          const demoPassword =
+            process.env.DEMO_PASSWORD ?? "demo-password-change-me";
           if (
-            credentials.email === "test@viberqc.com" &&
-            credentials.password === "password123"
+            credentials.email === demoEmail &&
+            credentials.password === demoPassword
           ) {
             return {
               id: "demo-user",
-              email: "test@viberqc.com",
+              email: demoEmail,
               name: "Demo User",
               image: null,
             };
@@ -75,7 +95,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const bcrypt = await import("bcryptjs");
         const isValid = await bcrypt.compare(
           credentials.password as string,
-          user.hashedPassword
+          user.hashedPassword,
         );
 
         if (!isValid) {

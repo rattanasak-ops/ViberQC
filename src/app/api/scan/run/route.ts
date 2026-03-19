@@ -9,14 +9,16 @@ import { saveScanResult } from "@/lib/scan/store";
 
 export async function POST(request: NextRequest) {
   try {
+    const contentLength = request.headers.get("content-length");
+    if (contentLength && parseInt(contentLength) > 2_000) {
+      return NextResponse.json({ error: "Request too large" }, { status: 413 });
+    }
+
     const body = await request.json();
     const { url } = body;
 
     if (!url || typeof url !== "string") {
-      return NextResponse.json(
-        { error: "URL is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "URL is required" }, { status: 400 });
     }
 
     // Validate URL format
@@ -26,7 +28,7 @@ export async function POST(request: NextRequest) {
     } catch {
       return NextResponse.json(
         { error: "Invalid URL format. Please include https://" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -34,7 +36,31 @@ export async function POST(request: NextRequest) {
     if (!["http:", "https:"].includes(parsedUrl.protocol)) {
       return NextResponse.json(
         { error: "Only HTTP and HTTPS URLs are supported" },
-        { status: 400 }
+        { status: 400 },
+      );
+    }
+
+    // Block SSRF — private/reserved IP ranges and localhost
+    const hostname = parsedUrl.hostname.toLowerCase();
+    const ssrfBlocklist = [
+      /^localhost$/,
+      /^127\./,
+      /^0\./,
+      /^10\./,
+      /^172\.(1[6-9]|2\d|3[01])\./,
+      /^192\.168\./,
+      /^169\.254\./, // link-local
+      /^::1$/, // IPv6 loopback
+      /^fc00:/, // IPv6 ULA
+      /^fe80:/, // IPv6 link-local
+      /^0\.0\.0\.0$/,
+      /^metadata\.google\.internal$/,
+      /^169\.254\.169\.254$/, // AWS/GCP metadata
+    ];
+    if (ssrfBlocklist.some((re) => re.test(hostname))) {
+      return NextResponse.json(
+        { error: "Scanning internal or private addresses is not allowed" },
+        { status: 400 },
       );
     }
 

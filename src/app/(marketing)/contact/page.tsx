@@ -111,11 +111,18 @@ export default function ContactPage() {
                         className="rounded-lg p-2.5"
                         style={{ backgroundColor: `${item.color}15` }}
                       >
-                        <item.icon className="h-5 w-5" style={{ color: item.color }} />
+                        <item.icon
+                          className="h-5 w-5"
+                          style={{ color: item.color }}
+                        />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-foreground">{item.title}</p>
-                        <p className="text-xs text-muted-foreground">{item.value}</p>
+                        <p className="text-sm font-medium text-foreground">
+                          {item.title}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {item.value}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -134,7 +141,8 @@ export default function ContactPage() {
                     <form className="space-y-4" onSubmit={handleSubmit}>
                       {success && (
                         <div className="rounded-lg border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-600">
-                          Message sent successfully! We&apos;ll get back to you soon.
+                          Message sent successfully! We&apos;ll get back to you
+                          soon.
                         </div>
                       )}
                       {error && (
@@ -145,23 +153,54 @@ export default function ContactPage() {
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-2">
                           <Label htmlFor="name">Name</Label>
-                          <Input id="name" name="name" placeholder="Your name" className="h-10" required />
+                          <Input
+                            id="name"
+                            name="name"
+                            placeholder="Your name"
+                            className="h-10"
+                            required
+                          />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="email">Email</Label>
-                          <Input id="email" name="email" type="email" placeholder="you@example.com" className="h-10" required />
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="you@example.com"
+                            className="h-10"
+                            required
+                          />
                         </div>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="subject">Subject</Label>
-                        <Input id="subject" name="subject" placeholder="How can we help?" className="h-10" required />
+                        <Input
+                          id="subject"
+                          name="subject"
+                          placeholder="How can we help?"
+                          className="h-10"
+                          required
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="message">Message</Label>
-                        <Textarea id="message" name="message" placeholder="Your message..." rows={5} required />
+                        <Textarea
+                          id="message"
+                          name="message"
+                          placeholder="Your message..."
+                          rows={5}
+                          required
+                        />
                       </div>
-                      <Button type="submit" className="h-10 w-full" disabled={loading}>
-                        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                      <Button
+                        type="submit"
+                        className="h-10 w-full"
+                        disabled={loading}
+                      >
+                        {loading && (
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        )}
                         Send Message
                       </Button>
                     </form>

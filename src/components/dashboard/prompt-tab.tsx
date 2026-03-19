@@ -4,7 +4,6 @@ import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
-  Copy,
   Check,
   Code,
   Wrench,
@@ -67,7 +66,7 @@ function HighlightedTemplate({ text }: { text: string }) {
           </span>
         ) : (
           <span key={i}>{part}</span>
-        )
+        ),
       )}
     </>
   );
@@ -178,18 +177,14 @@ function PromptListItem({
 }
 
 /** Right-side panel: preview + variable form */
-function PromptPreview({
-  prompt,
-}: {
-  prompt: PromptTemplate;
-}) {
+function PromptPreview({ prompt }: { prompt: PromptTemplate }) {
   const variables = extractVariablePlaceholders(prompt.template);
   const [values, setValues] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
 
   const filledTemplate = useMemo(
     () => fillPromptTemplate(prompt.template, values),
-    [prompt.template, values]
+    [prompt.template, values],
   );
 
   const handleCopy = useCallback(async () => {
@@ -350,10 +345,10 @@ function PromptPreview({
 export function PromptTab() {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<PromptCategory | null>(
-    null
+    null,
   );
   const [selectedId, setSelectedId] = useState<string | null>(
-    PROMPT_TEMPLATES[0]?.id ?? null
+    PROMPT_TEMPLATES[0]?.id ?? null,
   );
 
   // Filtered templates
@@ -369,7 +364,7 @@ export function PromptTab() {
           p.name.toLowerCase().includes(q) ||
           p.nameTh.includes(q) ||
           p.description.toLowerCase().includes(q) ||
-          p.tags.some((t) => t.includes(q))
+          p.tags.some((t) => t.includes(q)),
       );
     }
     return list;
@@ -377,7 +372,7 @@ export function PromptTab() {
 
   const selectedPrompt = useMemo(
     () => PROMPT_TEMPLATES.find((p) => p.id === selectedId) ?? null,
-    [selectedId]
+    [selectedId],
   );
 
   // Stats

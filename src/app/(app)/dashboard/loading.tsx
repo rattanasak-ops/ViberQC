@@ -31,13 +31,17 @@ export default function DashboardLoading() {
       {/* Charts */}
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
-          <CardHeader><Skeleton className="h-5 w-28" /></CardHeader>
+          <CardHeader>
+            <Skeleton className="h-5 w-28" />
+          </CardHeader>
           <CardContent className="flex justify-center pb-6">
             <Skeleton className="h-40 w-40 rounded-full" />
           </CardContent>
         </Card>
         <Card>
-          <CardHeader><Skeleton className="h-5 w-36" /></CardHeader>
+          <CardHeader>
+            <Skeleton className="h-5 w-36" />
+          </CardHeader>
           <CardContent className="flex justify-center pb-6">
             <Skeleton className="h-52 w-52" />
           </CardContent>
@@ -46,7 +50,9 @@ export default function DashboardLoading() {
 
       {/* Issues */}
       <Card>
-        <CardHeader><Skeleton className="h-5 w-28" /></CardHeader>
+        <CardHeader>
+          <Skeleton className="h-5 w-28" />
+        </CardHeader>
         <CardContent className="space-y-2">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-20 w-full rounded-lg" />

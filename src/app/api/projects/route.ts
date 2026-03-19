@@ -7,7 +7,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
-import { eq, isNull, desc } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { getSessionUser, unauthorizedResponse } from "@/lib/auth-utils";
 
 export async function GET() {
@@ -28,7 +28,7 @@ export async function GET() {
     console.error("[projects GET] Error:", error);
     return NextResponse.json(
       { error: "Failed to fetch projects" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     if (!name || !url) {
       return NextResponse.json(
         { error: "Name and URL are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     console.error("[projects POST] Error:", error);
     return NextResponse.json(
       { error: "Failed to create project" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

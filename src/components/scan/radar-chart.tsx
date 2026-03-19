@@ -21,7 +21,11 @@ const phases = [
   { key: "viber", label: "Viber" },
 ] as const;
 
-export function RadarChart({ scores, size = 280, animated = true }: RadarChartProps) {
+export function RadarChart({
+  scores,
+  size = 280,
+  animated = true,
+}: RadarChartProps) {
   const center = size / 2;
   const maxRadius = (size - 60) / 2;
   const numPhases = phases.length;
@@ -30,7 +34,10 @@ export function RadarChart({ scores, size = 280, animated = true }: RadarChartPr
   function getPoint(index: number, value: number): [number, number] {
     const angle = angleStep * index - Math.PI / 2;
     const radius = (value / 100) * maxRadius;
-    return [center + radius * Math.cos(angle), center + radius * Math.sin(angle)];
+    return [
+      center + radius * Math.cos(angle),
+      center + radius * Math.sin(angle),
+    ];
   }
 
   // Score polygon points

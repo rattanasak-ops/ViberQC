@@ -59,7 +59,9 @@ export function SettingsTab() {
       exportedAt: new Date().toISOString(),
       version: "1.0.0",
     };
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -101,10 +103,34 @@ export function SettingsTab() {
       icon: FolderKanban,
       color: "#6C63FF",
       fields: [
-        { key: "projectName" as const, label: "Project Name", labelTh: "ชื่อโปรเจกต์", icon: FolderKanban, placeholder: "My Project" },
-        { key: "projectUrl" as const, label: "Project URL", labelTh: "URL โปรเจกต์", icon: Globe, placeholder: "https://my-app.com" },
-        { key: "techStack" as const, label: "Tech Stack", labelTh: "เทคโนโลยีที่ใช้", icon: Settings, placeholder: "Next.js + React + TypeScript" },
-        { key: "githubRepo" as const, label: "GitHub Repository", labelTh: "GitHub Repository", icon: GitBranch, placeholder: "username/repo" },
+        {
+          key: "projectName" as const,
+          label: "Project Name",
+          labelTh: "ชื่อโปรเจกต์",
+          icon: FolderKanban,
+          placeholder: "My Project",
+        },
+        {
+          key: "projectUrl" as const,
+          label: "Project URL",
+          labelTh: "URL โปรเจกต์",
+          icon: Globe,
+          placeholder: "https://my-app.com",
+        },
+        {
+          key: "techStack" as const,
+          label: "Tech Stack",
+          labelTh: "เทคโนโลยีที่ใช้",
+          icon: Settings,
+          placeholder: "Next.js + React + TypeScript",
+        },
+        {
+          key: "githubRepo" as const,
+          label: "GitHub Repository",
+          labelTh: "GitHub Repository",
+          icon: GitBranch,
+          placeholder: "username/repo",
+        },
       ],
     },
     {
@@ -139,7 +165,10 @@ export function SettingsTab() {
       </div>
 
       {/* Project Information */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -148,7 +177,9 @@ export function SettingsTab() {
               </div>
               <div>
                 <span>Project Information</span>
-                <p className="text-xs font-normal text-muted-foreground">ข้อมูลโปรเจกต์</p>
+                <p className="text-xs font-normal text-muted-foreground">
+                  ข้อมูลโปรเจกต์
+                </p>
               </div>
             </CardTitle>
           </CardHeader>
@@ -158,11 +189,15 @@ export function SettingsTab() {
                 <Label className="flex items-center gap-2 text-sm">
                   <field.icon className="h-3.5 w-3.5 text-muted-foreground" />
                   {field.label}
-                  <span className="text-xs text-muted-foreground">({field.labelTh})</span>
+                  <span className="text-xs text-muted-foreground">
+                    ({field.labelTh})
+                  </span>
                 </Label>
                 <Input
                   value={config[field.key]}
-                  onChange={(e) => setConfig({ ...config, [field.key]: e.target.value })}
+                  onChange={(e) =>
+                    setConfig({ ...config, [field.key]: e.target.value })
+                  }
                   placeholder={field.placeholder}
                 />
               </div>
@@ -185,7 +220,9 @@ export function SettingsTab() {
               </div>
               <div>
                 <span>Scan Settings</span>
-                <p className="text-xs font-normal text-muted-foreground">ตั้งค่าการสแกน</p>
+                <p className="text-xs font-normal text-muted-foreground">
+                  ตั้งค่าการสแกน
+                </p>
               </div>
             </CardTitle>
           </CardHeader>
@@ -194,7 +231,9 @@ export function SettingsTab() {
               <Label className="flex items-center gap-2 text-sm">
                 <Clock className="h-3.5 w-3.5 text-muted-foreground" />
                 Scan Frequency
-                <span className="text-xs text-muted-foreground">(ความถี่การสแกน)</span>
+                <span className="text-xs text-muted-foreground">
+                  (ความถี่การสแกน)
+                </span>
               </Label>
               <div className="grid grid-cols-4 gap-2">
                 {["manual", "daily", "weekly", "monthly"].map((freq) => (
@@ -205,7 +244,9 @@ export function SettingsTab() {
                         ? "border-primary bg-primary/10 text-primary"
                         : "border-border bg-card text-muted-foreground hover:border-primary/50"
                     }`}
-                    onClick={() => setConfig({ ...config, scanFrequency: freq })}
+                    onClick={() =>
+                      setConfig({ ...config, scanFrequency: freq })
+                    }
                   >
                     {freq.charAt(0).toUpperCase() + freq.slice(1)}
                   </button>
@@ -218,14 +259,18 @@ export function SettingsTab() {
                 <Bell className="h-5 w-5 text-muted-foreground" />
                 <div>
                   <p className="text-sm font-medium">Email Notifications</p>
-                  <p className="text-xs text-muted-foreground">แจ้งเตือนผลสแกนทาง email</p>
+                  <p className="text-xs text-muted-foreground">
+                    แจ้งเตือนผลสแกนทาง email
+                  </p>
                 </div>
               </div>
               <button
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                   config.notifications ? "bg-primary" : "bg-muted"
                 }`}
-                onClick={() => setConfig({ ...config, notifications: !config.notifications })}
+                onClick={() =>
+                  setConfig({ ...config, notifications: !config.notifications })
+                }
               >
                 <span
                   className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
@@ -240,14 +285,18 @@ export function SettingsTab() {
                 <Palette className="h-5 w-5 text-muted-foreground" />
                 <div>
                   <p className="text-sm font-medium">Auto Scan on Deploy</p>
-                  <p className="text-xs text-muted-foreground">สแกนอัตโนมัติเมื่อ deploy</p>
+                  <p className="text-xs text-muted-foreground">
+                    สแกนอัตโนมัติเมื่อ deploy
+                  </p>
                 </div>
               </div>
               <button
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                   config.autoScan ? "bg-primary" : "bg-muted"
                 }`}
-                onClick={() => setConfig({ ...config, autoScan: !config.autoScan })}
+                onClick={() =>
+                  setConfig({ ...config, autoScan: !config.autoScan })
+                }
               >
                 <span
                   className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
@@ -274,7 +323,9 @@ export function SettingsTab() {
               </div>
               <div>
                 <span>API & Integrations</span>
-                <p className="text-xs font-normal text-muted-foreground">API และการเชื่อมต่อ</p>
+                <p className="text-xs font-normal text-muted-foreground">
+                  API และการเชื่อมต่อ
+                </p>
               </div>
             </CardTitle>
           </CardHeader>
@@ -284,7 +335,9 @@ export function SettingsTab() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Cursor IDE</p>
-                    <p className="text-xs text-muted-foreground">เชื่อมต่อกับ Cursor สำหรับ AI-assisted QC</p>
+                    <p className="text-xs text-muted-foreground">
+                      เชื่อมต่อกับ Cursor สำหรับ AI-assisted QC
+                    </p>
                   </div>
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     Coming Soon
@@ -295,7 +348,9 @@ export function SettingsTab() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">VS Code Extension</p>
-                    <p className="text-xs text-muted-foreground">Real-time QC warnings ใน editor</p>
+                    <p className="text-xs text-muted-foreground">
+                      Real-time QC warnings ใน editor
+                    </p>
                   </div>
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     Coming Soon
@@ -306,7 +361,9 @@ export function SettingsTab() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">GitHub App</p>
-                    <p className="text-xs text-muted-foreground">QC score บน PR comments</p>
+                    <p className="text-xs text-muted-foreground">
+                      QC score บน PR comments
+                    </p>
                   </div>
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     Coming Soon
@@ -317,7 +374,9 @@ export function SettingsTab() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">LINE Notify</p>
-                    <p className="text-xs text-muted-foreground">แจ้งเตือนผ่าน LINE เมื่อ score เปลี่ยน</p>
+                    <p className="text-xs text-muted-foreground">
+                      แจ้งเตือนผ่าน LINE เมื่อ score เปลี่ยน
+                    </p>
                   </div>
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     Coming Soon
@@ -328,7 +387,9 @@ export function SettingsTab() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Slack Integration</p>
-                    <p className="text-xs text-muted-foreground">QC alerts ใน Slack channels</p>
+                    <p className="text-xs text-muted-foreground">
+                      QC alerts ใน Slack channels
+                    </p>
                   </div>
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     Coming Soon

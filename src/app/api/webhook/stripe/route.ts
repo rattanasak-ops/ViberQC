@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     event = getStripe().webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (error) {
     console.error("[stripe webhook] Signature verification failed:", error);
@@ -55,11 +55,16 @@ export async function POST(request: NextRequest) {
 
         if (userId && plan) {
           // Update user plan
-          await db.update(users).set({ plan, stripeCustomerId: session.customer as string }).where(eq(users.id, userId));
+          await db
+            .update(users)
+            .set({ plan, stripeCustomerId: session.customer as string })
+            .where(eq(users.id, userId));
 
           // Create subscription record
           if (session.subscription) {
-            const sub = await getStripe().subscriptions.retrieve(session.subscription as string);
+            const sub = await getStripe().subscriptions.retrieve(
+              session.subscription as string,
+            );
             const period = getSubscriptionPeriod(sub);
             await db.insert(subscriptions).values({
               userId,
@@ -81,7 +86,12 @@ export async function POST(request: NextRequest) {
         await db
           .update(subscriptions)
           .set({
-            status: sub.status === "active" ? "active" : sub.status === "past_due" ? "past_due" : "canceled",
+            status:
+              sub.status === "active"
+                ? "active"
+                : sub.status === "past_due"
+                  ? "past_due"
+                  : "canceled",
             currentPeriodStart: period.start,
             currentPeriodEnd: period.end,
             updatedAt: new Date(),
@@ -102,7 +112,10 @@ export async function POST(request: NextRequest) {
           where: eq(subscriptions.stripeSubscriptionId, sub.id),
         });
         if (subRecord) {
-          await db.update(users).set({ plan: "free" }).where(eq(users.id, subRecord.userId));
+          await db
+            .update(users)
+            .set({ plan: "free" })
+            .where(eq(users.id, subRecord.userId));
         }
         break;
       }
@@ -110,8 +123,7 @@ export async function POST(request: NextRequest) {
       case "invoice.payment_failed": {
         const invoice = event.data.object as Stripe.Invoice;
         const subId =
-          invoice.parent?.subscription_details?.subscription ??
-          null;
+          invoice.parent?.subscription_details?.subscription ?? null;
         if (subId && typeof subId === "string") {
           await db
             .update(subscriptions)
@@ -125,6 +137,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ received: true });
   } catch (error) {
     console.error("[stripe webhook] Error handling event:", error);
-    return NextResponse.json({ error: "Webhook handler failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Webhook handler failed" },
+      { status: 500 },
+    );
   }
 }

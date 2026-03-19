@@ -44,7 +44,7 @@ function generateBadgeSvg(score: number, label: string = "ViberQC"): string {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -73,6 +73,9 @@ export async function GET(
     });
   } catch (error) {
     console.error("[badge] Error:", error);
-    return NextResponse.json({ error: "Failed to generate badge" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to generate badge" },
+      { status: 500 },
+    );
   }
 }

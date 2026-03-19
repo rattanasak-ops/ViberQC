@@ -9,7 +9,10 @@ import { NextResponse } from "next/server";
 /**
  * Get the current session user or return 401
  */
-export async function getSessionUser(): Promise<{ id: string; email: string } | null> {
+export async function getSessionUser(): Promise<{
+  id: string;
+  email: string;
+} | null> {
   const session = await auth();
   if (!session?.user?.id || !session?.user?.email) {
     return null;
@@ -21,18 +24,12 @@ export async function getSessionUser(): Promise<{ id: string; email: string } | 
  * Return a 401 JSON response
  */
 export function unauthorizedResponse() {
-  return NextResponse.json(
-    { error: "Unauthorized" },
-    { status: 401 }
-  );
+  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 }
 
 /**
  * Return a 400 JSON response
  */
 export function badRequestResponse(message: string) {
-  return NextResponse.json(
-    { error: message },
-    { status: 400 }
-  );
+  return NextResponse.json({ error: message }, { status: 400 });
 }

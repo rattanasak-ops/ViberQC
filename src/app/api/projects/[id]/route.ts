@@ -13,7 +13,7 @@ import { getSessionUser, unauthorizedResponse } from "@/lib/auth-utils";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const user = await getSessionUser();
@@ -32,13 +32,16 @@ export async function GET(
     return NextResponse.json(project);
   } catch (error) {
     console.error("[projects/[id] GET] Error:", error);
-    return NextResponse.json({ error: "Failed to fetch project" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch project" },
+      { status: 500 },
+    );
   }
 }
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const user = await getSessionUser();
@@ -63,13 +66,16 @@ export async function PATCH(
     return NextResponse.json(updated);
   } catch (error) {
     console.error("[projects/[id] PATCH] Error:", error);
-    return NextResponse.json({ error: "Failed to update project" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to update project" },
+      { status: 500 },
+    );
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const user = await getSessionUser();
@@ -91,6 +97,9 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("[projects/[id] DELETE] Error:", error);
-    return NextResponse.json({ error: "Failed to delete project" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to delete project" },
+      { status: 500 },
+    );
   }
 }

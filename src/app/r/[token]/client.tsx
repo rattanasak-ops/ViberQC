@@ -132,10 +132,7 @@ export function ShareResultClient({ token }: { token: string }) {
                 Result Not Found
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">{error}</p>
-              <Link
-                href="/scan"
-                className={cn(buttonVariants(), "mt-6")}
-              >
+              <Link href="/scan" className={cn(buttonVariants(), "mt-6")}>
                 <ScanLine className="mr-2 h-4 w-4" />
                 Run a New Scan
               </Link>
@@ -177,7 +174,10 @@ export function ShareResultClient({ token }: { token: string }) {
                     )}
                     {copied ? "Copied!" : "Copy Link"}
                   </Button>
-                  <Link href="/scan" className={cn(buttonVariants({ size: "sm" }))}>
+                  <Link
+                    href="/scan"
+                    className={cn(buttonVariants({ size: "sm" }))}
+                  >
                     <ScanLine className="mr-2 h-3 w-3" />
                     Scan Your App
                   </Link>
@@ -243,7 +243,10 @@ export function ShareResultClient({ token }: { token: string }) {
                               <Icon className="h-5 w-5" style={{ color }} />
                             </div>
                             <div>
-                              <p className="text-xl font-bold" style={{ color }}>
+                              <p
+                                className="text-xl font-bold"
+                                style={{ color }}
+                              >
                                 {score}
                               </p>
                               <p className="text-xs text-muted-foreground">
@@ -266,9 +269,7 @@ export function ShareResultClient({ token }: { token: string }) {
               >
                 <Card>
                   <CardHeader>
-                    <CardTitle>
-                      Issues Found ({result.issues.length})
-                    </CardTitle>
+                    <CardTitle>Issues Found ({result.issues.length})</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <IssueList issues={result.issues} />

@@ -84,14 +84,18 @@ export default function HistoryPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
             >
-              <Link href={scan.status === "completed" ? `/scan/${scan.id}` : "#"}>
+              <Link
+                href={scan.status === "completed" ? `/scan/${scan.id}` : "#"}
+              >
                 <Card className="cursor-pointer transition-all hover:border-primary/30">
                   <CardContent className="flex items-center justify-between p-4">
                     <div className="flex items-center gap-4">
                       <StatusIcon className={`h-5 w-5 ${statusCfg.color}`} />
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="font-medium text-foreground">{scan.projectName}</h3>
+                          <h3 className="font-medium text-foreground">
+                            {scan.projectName}
+                          </h3>
                           <Badge variant="outline" className="text-xs">
                             {statusCfg.label}
                           </Badge>

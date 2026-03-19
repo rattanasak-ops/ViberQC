@@ -5,7 +5,7 @@
 // Used by Login, Register, Forgot Password pages
 // ============================================================
 
-import { signIn } from "@/lib/auth";
+import { signIn, signOut } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
@@ -63,7 +63,10 @@ export async function registerWithCredentials(formData: FormData) {
   }
 
   if (!process.env.DATABASE_URL) {
-    return { error: "Registration is not available in demo mode. Use test@viberqc.com / password123 to log in." };
+    return {
+      error:
+        "Registration is not available in demo mode. Please use the demo account to sign in.",
+    };
   }
 
   // Check if user already exists
@@ -96,7 +99,9 @@ export async function registerWithCredentials(formData: FormData) {
     });
   } catch (error) {
     if (error instanceof AuthError) {
-      return { error: "Account created but auto-login failed. Please sign in." };
+      return {
+        error: "Account created but auto-login failed. Please sign in.",
+      };
     }
     throw error;
   }
@@ -122,8 +127,13 @@ export async function requestPasswordReset(formData: FormData) {
   // Always return success to prevent email enumeration
   // TODO: Send actual reset email via Resend
   if (user) {
-    console.log(`[auth] Password reset requested for ${email}`);
+    // trigger password reset email here
   }
 
   return { success: "If an account exists, you'll receive a reset link." };
+}
+
+// --- Logout ---
+export async function logout() {
+  await signOut({ redirectTo: "/" });
 }

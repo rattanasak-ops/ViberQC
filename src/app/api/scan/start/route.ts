@@ -12,14 +12,16 @@ import { nanoid } from "nanoid";
 
 export async function POST(request: NextRequest) {
   try {
+    const contentLength = request.headers.get("content-length");
+    if (contentLength && parseInt(contentLength) > 2_000) {
+      return NextResponse.json({ error: "Request too large" }, { status: 413 });
+    }
+
     const body = await request.json();
     const { url, projectId } = body;
 
     if (!url || typeof url !== "string") {
-      return NextResponse.json(
-        { error: "URL is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "URL is required" }, { status: 400 });
     }
 
     // Validate URL format
@@ -28,7 +30,7 @@ export async function POST(request: NextRequest) {
     } catch {
       return NextResponse.json(
         { error: "Invalid URL format" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -59,7 +61,7 @@ export async function POST(request: NextRequest) {
     console.error("[scan/start] Error:", error);
     return NextResponse.json(
       { error: "Failed to start scan" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

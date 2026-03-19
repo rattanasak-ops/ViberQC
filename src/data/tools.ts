@@ -37,14 +37,62 @@ export interface ToolCategoryInfo {
 }
 
 export const TOOL_CATEGORIES: ToolCategoryInfo[] = [
-  { id: "ide", name: "IDE & Editor", nameTh: "IDE และ Editor", icon: "Monitor", color: "#6C63FF" },
-  { id: "testing", name: "Testing", nameTh: "การทดสอบ", icon: "TestTube", color: "#22C55E" },
-  { id: "performance", name: "Performance", nameTh: "ประสิทธิภาพ", icon: "Zap", color: "#FFB800" },
-  { id: "security", name: "Security", nameTh: "ความปลอดภัย", icon: "Shield", color: "#EF4444" },
-  { id: "accessibility", name: "Accessibility", nameTh: "การเข้าถึง", icon: "Eye", color: "#F97316" },
-  { id: "seo", name: "SEO & Analytics", nameTh: "SEO และวิเคราะห์", icon: "Search", color: "#84CC16" },
-  { id: "monitoring", name: "Monitoring", nameTh: "การตรวจสอบ", icon: "Activity", color: "#06B6D4" },
-  { id: "devops", name: "DevOps & CI/CD", nameTh: "DevOps และ CI/CD", icon: "GitBranch", color: "#8B5CF6" },
+  {
+    id: "ide",
+    name: "IDE & Editor",
+    nameTh: "IDE และ Editor",
+    icon: "Monitor",
+    color: "#6C63FF",
+  },
+  {
+    id: "testing",
+    name: "Testing",
+    nameTh: "การทดสอบ",
+    icon: "TestTube",
+    color: "#22C55E",
+  },
+  {
+    id: "performance",
+    name: "Performance",
+    nameTh: "ประสิทธิภาพ",
+    icon: "Zap",
+    color: "#FFB800",
+  },
+  {
+    id: "security",
+    name: "Security",
+    nameTh: "ความปลอดภัย",
+    icon: "Shield",
+    color: "#EF4444",
+  },
+  {
+    id: "accessibility",
+    name: "Accessibility",
+    nameTh: "การเข้าถึง",
+    icon: "Eye",
+    color: "#F97316",
+  },
+  {
+    id: "seo",
+    name: "SEO & Analytics",
+    nameTh: "SEO และวิเคราะห์",
+    icon: "Search",
+    color: "#84CC16",
+  },
+  {
+    id: "monitoring",
+    name: "Monitoring",
+    nameTh: "การตรวจสอบ",
+    icon: "Activity",
+    color: "#06B6D4",
+  },
+  {
+    id: "devops",
+    name: "DevOps & CI/CD",
+    nameTh: "DevOps และ CI/CD",
+    icon: "GitBranch",
+    color: "#8B5CF6",
+  },
 ];
 
 export const TOOLS: Tool[] = [
@@ -54,8 +102,10 @@ export const TOOLS: Tool[] = [
   {
     id: "cursor",
     name: "Cursor",
-    description: "AI-first code editor built on VS Code. Use .cursorrules for project-specific AI instructions.",
-    descriptionTh: "Code Editor ที่ AI มาก่อน สร้างจาก VS Code ใช้ .cursorrules สำหรับคำสั่ง AI เฉพาะโปรเจกต์",
+    description:
+      "AI-first code editor built on VS Code. Use .cursorrules for project-specific AI instructions.",
+    descriptionTh:
+      "Code Editor ที่ AI มาก่อน สร้างจาก VS Code ใช้ .cursorrules สำหรับคำสั่ง AI เฉพาะโปรเจกต์",
     category: "ide",
     websiteUrl: "https://cursor.sh",
     icon: "cursor",
@@ -66,8 +116,10 @@ export const TOOLS: Tool[] = [
   {
     id: "vscode",
     name: "Visual Studio Code",
-    description: "The most popular code editor with extensive extension marketplace.",
-    descriptionTh: "Code Editor ยอดนิยมที่สุดพร้อม Extension Marketplace ขนาดใหญ่",
+    description:
+      "The most popular code editor with extensive extension marketplace.",
+    descriptionTh:
+      "Code Editor ยอดนิยมที่สุดพร้อม Extension Marketplace ขนาดใหญ่",
     category: "ide",
     websiteUrl: "https://code.visualstudio.com",
     icon: "vscode",
@@ -90,8 +142,10 @@ export const TOOLS: Tool[] = [
   {
     id: "zed",
     name: "Zed Editor",
-    description: "High-performance code editor built in Rust with collaboration features.",
-    descriptionTh: "Code Editor ประสิทธิภาพสูงสร้างด้วย Rust พร้อม collaboration",
+    description:
+      "High-performance code editor built in Rust with collaboration features.",
+    descriptionTh:
+      "Code Editor ประสิทธิภาพสูงสร้างด้วย Rust พร้อม collaboration",
     category: "ide",
     websiteUrl: "https://zed.dev",
     icon: "zed",
@@ -120,8 +174,10 @@ export const TOOLS: Tool[] = [
   {
     id: "playwright",
     name: "Playwright",
-    description: "End-to-end testing framework by Microsoft for all modern browsers.",
-    descriptionTh: "E2E Testing Framework จาก Microsoft สำหรับทุก browser สมัยใหม่",
+    description:
+      "End-to-end testing framework by Microsoft for all modern browsers.",
+    descriptionTh:
+      "E2E Testing Framework จาก Microsoft สำหรับทุก browser สมัยใหม่",
     category: "testing",
     installCommand: "npm init playwright@latest",
     websiteUrl: "https://playwright.dev",
@@ -135,7 +191,8 @@ export const TOOLS: Tool[] = [
     id: "cypress",
     name: "Cypress",
     description: "JavaScript E2E testing framework with time-travel debugging.",
-    descriptionTh: "JavaScript E2E Testing Framework พร้อม Time-travel Debugging",
+    descriptionTh:
+      "JavaScript E2E Testing Framework พร้อม Time-travel Debugging",
     category: "testing",
     installCommand: "npm install -D cypress",
     websiteUrl: "https://www.cypress.io",
@@ -160,7 +217,8 @@ export const TOOLS: Tool[] = [
   {
     id: "storybook",
     name: "Storybook",
-    description: "UI component workshop for building and testing components in isolation.",
+    description:
+      "UI component workshop for building and testing components in isolation.",
     descriptionTh: "Workshop สำหรับสร้างและทดสอบ UI Components แยกส่วน",
     category: "testing",
     installCommand: "npx storybook@latest init",
@@ -177,7 +235,8 @@ export const TOOLS: Tool[] = [
   {
     id: "lighthouse",
     name: "Lighthouse",
-    description: "Google's automated tool for improving the quality of web pages.",
+    description:
+      "Google's automated tool for improving the quality of web pages.",
     descriptionTh: "เครื่องมืออัตโนมัติของ Google สำหรับปรับปรุงคุณภาพเว็บ",
     category: "performance",
     installCommand: "npm install -g lighthouse",
@@ -190,7 +249,8 @@ export const TOOLS: Tool[] = [
   {
     id: "webpack-analyzer",
     name: "Webpack Bundle Analyzer",
-    description: "Visualize the size of webpack output files with an interactive treemap.",
+    description:
+      "Visualize the size of webpack output files with an interactive treemap.",
     descriptionTh: "แสดงผลขนาดไฟล์ webpack ด้วย interactive treemap",
     category: "performance",
     installCommand: "npm install -D @next/bundle-analyzer",
@@ -233,7 +293,8 @@ export const TOOLS: Tool[] = [
   {
     id: "npm-audit",
     name: "npm audit",
-    description: "Built-in npm tool to check for known vulnerabilities in dependencies.",
+    description:
+      "Built-in npm tool to check for known vulnerabilities in dependencies.",
     descriptionTh: "เครื่องมือ npm ในตัวสำหรับตรวจสอบช่องโหว่ใน dependencies",
     category: "security",
     installCommand: "npm audit",
@@ -260,8 +321,10 @@ export const TOOLS: Tool[] = [
   {
     id: "gitleaks",
     name: "Gitleaks",
-    description: "Detect hardcoded secrets like passwords, API keys in git repos.",
-    descriptionTh: "ตรวจจับ secrets ที่ hardcode เช่น passwords, API keys ใน git repos",
+    description:
+      "Detect hardcoded secrets like passwords, API keys in git repos.",
+    descriptionTh:
+      "ตรวจจับ secrets ที่ hardcode เช่น passwords, API keys ใน git repos",
     category: "security",
     installCommand: "brew install gitleaks",
     websiteUrl: "https://github.com/gitleaks/gitleaks",
@@ -285,7 +348,8 @@ export const TOOLS: Tool[] = [
   {
     id: "helmet",
     name: "Helmet.js",
-    description: "Express middleware to set security-related HTTP response headers.",
+    description:
+      "Express middleware to set security-related HTTP response headers.",
     descriptionTh: "Express Middleware สำหรับตั้งค่า Security Headers",
     category: "security",
     installCommand: "npm install helmet",
@@ -317,7 +381,8 @@ export const TOOLS: Tool[] = [
     id: "pa11y",
     name: "Pa11y",
     description: "Automated accessibility testing tool with CI integration.",
-    descriptionTh: "เครื่องมือทดสอบ Accessibility อัตโนมัติพร้อม CI integration",
+    descriptionTh:
+      "เครื่องมือทดสอบ Accessibility อัตโนมัติพร้อม CI integration",
     category: "accessibility",
     installCommand: "npm install -g pa11y",
     websiteUrl: "https://pa11y.org",
@@ -345,7 +410,8 @@ export const TOOLS: Tool[] = [
   {
     id: "google-search-console",
     name: "Google Search Console",
-    description: "Monitor and maintain your site's presence in Google Search results.",
+    description:
+      "Monitor and maintain your site's presence in Google Search results.",
     descriptionTh: "ตรวจสอบและดูแลการแสดงผลเว็บไซต์ใน Google Search",
     category: "seo",
     websiteUrl: "https://search.google.com/search-console",
@@ -386,8 +452,10 @@ export const TOOLS: Tool[] = [
   {
     id: "sentry",
     name: "Sentry",
-    description: "Application monitoring platform for error tracking and performance.",
-    descriptionTh: "แพลตฟอร์มตรวจสอบแอปพลิเคชันสำหรับ error tracking และ performance",
+    description:
+      "Application monitoring platform for error tracking and performance.",
+    descriptionTh:
+      "แพลตฟอร์มตรวจสอบแอปพลิเคชันสำหรับ error tracking และ performance",
     category: "monitoring",
     installCommand: "npx @sentry/wizard@latest -i nextjs",
     websiteUrl: "https://sentry.io",
@@ -428,7 +496,8 @@ export const TOOLS: Tool[] = [
   {
     id: "github-actions",
     name: "GitHub Actions",
-    description: "CI/CD platform integrated with GitHub for automated workflows.",
+    description:
+      "CI/CD platform integrated with GitHub for automated workflows.",
     descriptionTh: "CI/CD Platform รวมกับ GitHub สำหรับ automated workflows",
     category: "devops",
     websiteUrl: "https://github.com/features/actions",
@@ -440,7 +509,8 @@ export const TOOLS: Tool[] = [
   {
     id: "docker",
     name: "Docker",
-    description: "Container platform for building, shipping, and running applications.",
+    description:
+      "Container platform for building, shipping, and running applications.",
     descriptionTh: "Container Platform สำหรับสร้าง ส่ง และรันแอปพลิเคชัน",
     category: "devops",
     websiteUrl: "https://www.docker.com",

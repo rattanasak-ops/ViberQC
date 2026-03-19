@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { motion, type Variants } from "framer-motion";
 
 interface LogoProps {
@@ -15,8 +16,12 @@ export function Logo({
   showText = true,
   className = "",
 }: LogoProps) {
+  const uid = useId();
+  const gradId = `shieldGrad-${uid}`;
+  const glowId = `shieldGlow-${uid}`;
   const iconSize = size;
-  const shieldPath = "M20 4L4 8v8c0 7.2 6.8 12.4 16 16 9.2-3.6 16-8.8 16-16V8L20 4z";
+  const shieldPath =
+    "M20 4L4 8v8c0 7.2 6.8 12.4 16 16 9.2-3.6 16-8.8 16-16V8L20 4z";
 
   const checkVariants: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -45,88 +50,88 @@ export function Logo({
 
   const svgContent = (
     <svg
-          width={iconSize}
-          height={iconSize}
-          viewBox="0 0 40 40"
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 40 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Shield background with gradient */}
+      <defs>
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6C63FF" />
+          <stop offset="50%" stopColor="#8D83FF" />
+          <stop offset="100%" stopColor="#5046E5" />
+        </linearGradient>
+        <linearGradient id={glowId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#B3ACFF" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#6C63FF" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+
+      {/* Outer glow */}
+      {animated && (
+        <motion.path
+          d={shieldPath}
+          fill={`url(#${glowId})`}
+          variants={shieldVariants}
+          initial="hidden"
+          animate="visible"
+        />
+      )}
+
+      {/* Shield body */}
+      {animated ? (
+        <motion.path
+          d={shieldPath}
+          fill={`url(#${gradId})`}
+          variants={shieldVariants}
+          initial="hidden"
+          animate="visible"
+        />
+      ) : (
+        <path d={shieldPath} fill={`url(#${gradId})`} />
+      )}
+
+      {/* Checkmark */}
+      {animated ? (
+        <motion.path
+          d="M13 20l4.5 4.5L27 15"
+          stroke="white"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Shield background with gradient */}
-          <defs>
-            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#6C63FF" />
-              <stop offset="50%" stopColor="#8D83FF" />
-              <stop offset="100%" stopColor="#5046E5" />
-            </linearGradient>
-            <linearGradient id="shieldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#B3ACFF" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#6C63FF" stopOpacity="0" />
-            </linearGradient>
-          </defs>
+          variants={checkVariants}
+          initial="hidden"
+          animate="visible"
+        />
+      ) : (
+        <path
+          d="M13 20l4.5 4.5L27 15"
+          stroke="white"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      )}
 
-          {/* Outer glow */}
-          {animated && (
-            <motion.path
-              d={shieldPath}
-              fill="url(#shieldGlow)"
-              variants={shieldVariants}
-              initial="hidden"
-              animate="visible"
-            />
-          )}
-
-          {/* Shield body */}
-          {animated ? (
-            <motion.path
-              d={shieldPath}
-              fill="url(#shieldGrad)"
-              variants={shieldVariants}
-              initial="hidden"
-              animate="visible"
-            />
-          ) : (
-            <path d={shieldPath} fill="url(#shieldGrad)" />
-          )}
-
-          {/* Checkmark */}
-          {animated ? (
-            <motion.path
-              d="M13 20l4.5 4.5L27 15"
-              stroke="white"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-              variants={checkVariants}
-              initial="hidden"
-              animate="visible"
-            />
-          ) : (
-            <path
-              d="M13 20l4.5 4.5L27 15"
-              stroke="white"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-          )}
-
-          {/* AI circle indicator */}
-          {animated ? (
-            <motion.circle
-              cx="32"
-              cy="8"
-              r="4"
-              fill="#22C55E"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.8, type: "spring", stiffness: 500 }}
-            />
-          ) : (
-            <circle cx="32" cy="8" r="4" fill="#22C55E" />
-          )}
-        </svg>
+      {/* AI circle indicator */}
+      {animated ? (
+        <motion.circle
+          cx="32"
+          cy="8"
+          r="4"
+          fill="#22C55E"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.8, type: "spring", stiffness: 500 }}
+        />
+      ) : (
+        <circle cx="32" cy="8" r="4" fill="#22C55E" />
+      )}
+    </svg>
   );
 
   return (

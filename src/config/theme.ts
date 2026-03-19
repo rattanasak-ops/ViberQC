@@ -5,12 +5,12 @@
 export const colors = {
   // Primary
   primary: {
-    DEFAULT: "#6C63FF",
+    DEFAULT: "#5A52D5",
     50: "#F0EEFF",
     100: "#D9D6FF",
     200: "#B3ACFF",
     300: "#8D83FF",
-    400: "#6C63FF",
+    400: "#5A52D5",
     500: "#5046E5",
     600: "#3A32CC",
     700: "#2D1B69",
@@ -31,7 +31,7 @@ export const colors = {
   success: "#22C55E",
   error: "#EF4444",
   warning: "#FFB800",
-  info: "#6C63FF",
+  info: "#5A52D5",
 
   // Text
   text: {
@@ -44,10 +44,10 @@ export const colors = {
   // QC Score colors
   score: {
     excellent: "#22C55E", // 90-100
-    good: "#84CC16",      // 70-89
-    average: "#FFB800",   // 50-69
-    poor: "#F97316",      // 25-49
-    critical: "#EF4444",  // 0-24
+    good: "#84CC16", // 70-89
+    average: "#FFB800", // 50-69
+    poor: "#F97316", // 25-49
+    critical: "#EF4444", // 0-24
   },
 } as const;
 

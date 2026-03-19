@@ -52,13 +52,18 @@ export const siteConfig = {
   // Scan phases (8 total)
   scanPhases: [
     { id: "performance", name: "Performance", icon: "Zap", weight: 0.15 },
-    { id: "seo", name: "SEO", icon: "Search", weight: 0.10 },
+    { id: "seo", name: "SEO", icon: "Search", weight: 0.1 },
     { id: "accessibility", name: "Accessibility", icon: "Eye", weight: 0.15 },
-    { id: "security", name: "Security", icon: "Shield", weight: 0.20 },
+    { id: "security", name: "Security", icon: "Shield", weight: 0.2 },
     { id: "code-quality", name: "Code Quality", icon: "Code", weight: 0.15 },
-    { id: "best-practices", name: "Best Practices", icon: "CheckCircle", weight: 0.10 },
+    {
+      id: "best-practices",
+      name: "Best Practices",
+      icon: "CheckCircle",
+      weight: 0.1,
+    },
     { id: "pwa", name: "PWA", icon: "Smartphone", weight: 0.05 },
-    { id: "viber", name: "Viber Specific", icon: "MessageCircle", weight: 0.10 },
+    { id: "viber", name: "Viber Specific", icon: "MessageCircle", weight: 0.1 },
   ] as const,
 
   // Social links

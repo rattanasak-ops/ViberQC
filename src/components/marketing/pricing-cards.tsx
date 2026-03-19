@@ -98,11 +98,7 @@ export function PricingCards() {
             <Label htmlFor="billing" className="text-sm text-muted-foreground">
               Monthly
             </Label>
-            <Switch
-              id="billing"
-              checked={annual}
-              onCheckedChange={setAnnual}
-            />
+            <Switch id="billing" checked={annual} onCheckedChange={setAnnual} />
             <Label htmlFor="billing" className="text-sm text-muted-foreground">
               Annual
             </Label>
@@ -127,12 +123,14 @@ export function PricingCards() {
               <Card
                 className={cn(
                   "relative h-full",
-                  plan.popular && "border-primary shadow-lg shadow-primary/10"
+                  plan.popular && "border-primary shadow-lg shadow-primary/10",
                 )}
               >
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
+                    <Badge className="bg-primary text-primary-foreground">
+                      Most Popular
+                    </Badge>
                   </div>
                 )}
 

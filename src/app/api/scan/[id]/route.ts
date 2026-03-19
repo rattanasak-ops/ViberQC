@@ -9,7 +9,7 @@ import { eq } from "drizzle-orm";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -19,10 +19,7 @@ export async function GET(
     });
 
     if (!scan) {
-      return NextResponse.json(
-        { error: "Scan not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Scan not found" }, { status: 404 });
     }
 
     const issues = await db.query.scanIssues.findMany({
@@ -37,7 +34,7 @@ export async function GET(
     console.error("[scan/[id]] Error:", error);
     return NextResponse.json(
       { error: "Failed to fetch scan" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

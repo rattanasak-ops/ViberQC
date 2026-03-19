@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { motion } from "framer-motion";
 import { ArrowRight, ScanLine, FileText, Share2, Zap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -13,28 +14,32 @@ const steps = [
     number: "01",
     icon: ScanLine,
     title: "Paste your URL",
-    description: "Enter your Viber App URL or connect your GitHub repo. No signup required for your first scan.",
+    description:
+      "Enter your Viber App URL or connect your GitHub repo. No signup required for your first scan.",
     color: "#6C63FF",
   },
   {
     number: "02",
     icon: Zap,
     title: "AI scans 8 phases",
-    description: "Our AI analyzes Performance, SEO, Accessibility, Security, Code Quality, Best Practices, PWA, and Viber-specific checks in parallel.",
+    description:
+      "Our AI analyzes Performance, SEO, Accessibility, Security, Code Quality, Best Practices, PWA, and Viber-specific checks in parallel.",
     color: "#22C55E",
   },
   {
     number: "03",
     icon: FileText,
     title: "Get your 360° report",
-    description: "See your overall score, critical issues, and AI-generated fix recommendations — all in 30 seconds.",
+    description:
+      "See your overall score, critical issues, and AI-generated fix recommendations — all in 30 seconds.",
     color: "#FFB800",
   },
   {
     number: "04",
     icon: Share2,
     title: "Share & improve",
-    description: "Share results with your team, export PDF reports, track your score over time, and watch your app quality improve.",
+    description:
+      "Share results with your team, export PDF reports, track your score over time, and watch your app quality improve.",
     color: "#8D83FF",
   },
 ];
@@ -80,10 +85,16 @@ export default function HowItWorksPage() {
                     className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
                     style={{ backgroundColor: `${step.color}15` }}
                   >
-                    <step.icon className="h-6 w-6" style={{ color: step.color }} />
+                    <step.icon
+                      className="h-6 w-6"
+                      style={{ color: step.color }}
+                    />
                   </div>
                   <div>
-                    <span className="text-sm font-bold" style={{ color: step.color }}>
+                    <span
+                      className="text-sm font-bold"
+                      style={{ color: step.color }}
+                    >
                       Step {step.number}
                     </span>
                     <h3 className="mt-1 text-xl font-semibold text-foreground">
@@ -97,6 +108,24 @@ export default function HowItWorksPage() {
               ))}
             </div>
 
+            {/* Dashboard preview */}
+            <motion.div
+              className="mt-20 overflow-hidden rounded-2xl border border-border/50 shadow-2xl shadow-primary/5"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Image
+                src="/images/performance.webp"
+                alt="ViberQC Dashboard — Real-time analytics"
+                width={640}
+                height={427}
+                className="w-full object-cover"
+                sizes="(max-width: 768px) 100vw, 640px"
+              />
+            </motion.div>
+
             {/* CTA */}
             <motion.div
               className="mt-20 text-center"
@@ -106,7 +135,10 @@ export default function HowItWorksPage() {
             >
               <Link
                 href="/register"
-                className={cn(buttonVariants({ size: "lg" }), "h-12 px-8 text-base")}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "h-12 px-8 text-base",
+                )}
               >
                 Try Free Scan Now
                 <ArrowRight className="ml-2 h-4 w-4" />

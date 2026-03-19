@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Plus, Globe, ExternalLink, MoreVertical } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { Plus, Globe, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { getScoreColor } from "@/config/theme";
@@ -43,7 +43,9 @@ export default function ProjectsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-foreground">Projects</h1>
-          <p className="text-sm text-muted-foreground">Manage your Viber Apps</p>
+          <p className="text-sm text-muted-foreground">
+            Manage your Viber Apps
+          </p>
         </div>
         <Link href="/scan" className={cn(buttonVariants(), "h-9")}>
           <Plus className="mr-2 h-4 w-4" />
@@ -69,7 +71,9 @@ export default function ProjectsPage() {
                         <Globe className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground">{project.name}</h3>
+                        <h3 className="font-semibold text-foreground">
+                          {project.name}
+                        </h3>
                         <p className="flex items-center gap-1 text-xs text-muted-foreground">
                           {project.url}
                           <ExternalLink className="h-3 w-3" />

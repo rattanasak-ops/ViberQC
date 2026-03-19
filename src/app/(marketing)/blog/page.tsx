@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 const posts = [
   {
     slug: "why-viber-app-quality-matters",
     title: "Why Viber App Quality Matters More Than Ever",
-    excerpt: "With over 1 billion users, Viber's ecosystem demands high-quality apps. Learn why QC is your competitive advantage.",
+    excerpt:
+      "With over 1 billion users, Viber's ecosystem demands high-quality apps. Learn why QC is your competitive advantage.",
     category: "Quality",
     readTime: "5 min",
     date: "Mar 8, 2026",
@@ -21,7 +21,8 @@ const posts = [
   {
     slug: "ai-powered-code-review",
     title: "How AI is Revolutionizing Code Review",
-    excerpt: "Multi-model AI scanning catches issues that traditional linters miss. Here's how ViberQC leverages Claude, GPT-4, and Gemini.",
+    excerpt:
+      "Multi-model AI scanning catches issues that traditional linters miss. Here's how ViberQC leverages Claude, GPT-4, and Gemini.",
     category: "AI",
     readTime: "7 min",
     date: "Mar 5, 2026",
@@ -30,7 +31,8 @@ const posts = [
   {
     slug: "owasp-top-10-viber-apps",
     title: "OWASP Top 10 for Viber Mini Apps",
-    excerpt: "Security vulnerabilities specific to Viber's platform. A practical guide to protecting your users and data.",
+    excerpt:
+      "Security vulnerabilities specific to Viber's platform. A practical guide to protecting your users and data.",
     category: "Security",
     readTime: "10 min",
     date: "Mar 1, 2026",
@@ -39,7 +41,8 @@ const posts = [
   {
     slug: "performance-optimization-guide",
     title: "Performance Optimization: From 40 to 95 Score",
-    excerpt: "Real case study of how one team improved their Viber App performance score using ViberQC recommendations.",
+    excerpt:
+      "Real case study of how one team improved their Viber App performance score using ViberQC recommendations.",
     category: "Performance",
     readTime: "8 min",
     date: "Feb 25, 2026",

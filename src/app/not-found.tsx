@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, Home } from "lucide-react";
+import { Home } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { Logo } from "@/components/shared/logo";
 import { cn } from "@/lib/utils";
@@ -18,26 +18,21 @@ export default function NotFound() {
         <Logo size={48} animated={false} />
 
         <h1 className="mt-8 text-6xl font-bold text-foreground">404</h1>
-        <p className="mt-2 text-lg text-muted-foreground">
-          Page not found
-        </p>
+        <p className="mt-2 text-lg text-muted-foreground">Page not found</p>
         <p className="mt-1 text-sm text-muted-foreground">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3">
-          <Link
-            href="/"
-            className={cn(buttonVariants(), "h-10")}
-          >
+          <Link href="/" className={cn(buttonVariants(), "h-10")}>
             <Home className="mr-2 h-4 w-4" />
             Go Home
           </Link>
           <Link
-            href="/dashboard"
+            href="/scan"
             className={cn(buttonVariants({ variant: "outline" }), "h-10")}
           >
-            Dashboard
+            Scan Free
           </Link>
         </div>
       </motion.div>

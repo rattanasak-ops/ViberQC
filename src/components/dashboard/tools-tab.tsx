@@ -25,13 +25,15 @@ import { Badge } from "@/components/ui/badge";
 import {
   TOOLS,
   TOOL_CATEGORIES,
-  type Tool,
   type ToolCategory,
   getToolsByCategory,
 } from "@/data/tools";
 
 // Map icon string names to Lucide components
-const CATEGORY_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+const CATEGORY_ICONS: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   Monitor,
   TestTube,
   Zap,
@@ -66,7 +68,9 @@ const cardVariants = {
 };
 
 export function ToolsTab() {
-  const [selectedCategory, setSelectedCategory] = useState<ToolCategory | "all">("all");
+  const [selectedCategory, setSelectedCategory] = useState<
+    ToolCategory | "all"
+  >("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -110,9 +114,7 @@ export function ToolsTab() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">
-            Tools Catalog
-          </h2>
+          <h2 className="text-2xl font-bold text-foreground">Tools Catalog</h2>
           <p className="text-sm text-muted-foreground">
             {filteredTools.length} of {TOOLS.length} tools
           </p>
@@ -292,7 +294,9 @@ export function ToolsTab() {
                           {tool.installCommand}
                         </code>
                         <button
-                          onClick={() => handleCopy(tool.id, tool.installCommand!)}
+                          onClick={() =>
+                            handleCopy(tool.id, tool.installCommand!)
+                          }
                           className="shrink-0 rounded-md p-1 text-muted-foreground/60 transition-colors hover:bg-muted hover:text-foreground"
                           title="Copy install command"
                         >
@@ -352,7 +356,9 @@ export function ToolsTab() {
           className="flex flex-col items-center justify-center gap-3 rounded-xl bg-card py-16"
         >
           <Search className="size-10 text-muted-foreground/30" />
-          <p className="text-lg font-medium text-muted-foreground/60">No tools found</p>
+          <p className="text-lg font-medium text-muted-foreground/60">
+            No tools found
+          </p>
           <p className="text-sm text-muted-foreground/40">
             Try a different search term or category
           </p>

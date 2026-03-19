@@ -8,7 +8,7 @@ import { getScanResult } from "@/lib/scan/store";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ token: string }> }
+  { params }: { params: Promise<{ token: string }> },
 ) {
   const { token } = await params;
   const result = getScanResult(token);
@@ -16,7 +16,7 @@ export async function GET(
   if (!result) {
     return NextResponse.json(
       { error: "Scan result not found or expired" },
-      { status: 404 }
+      { status: 404 },
     );
   }
 

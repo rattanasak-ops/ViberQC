@@ -39,14 +39,56 @@ interface ScanResult {
 }
 
 const phaseConfig = [
-  { key: "performance", name: "Performance", nameTh: "ประสิทธิภาพ", icon: Zap, color: "#FFB800" },
+  {
+    key: "performance",
+    name: "Performance",
+    nameTh: "ประสิทธิภาพ",
+    icon: Zap,
+    color: "#FFB800",
+  },
   { key: "seo", name: "SEO", nameTh: "SEO", icon: Search, color: "#84CC16" },
-  { key: "accessibility", name: "Accessibility", nameTh: "การเข้าถึง", icon: Eye, color: "#F97316" },
-  { key: "security", name: "Security", nameTh: "ความปลอดภัย", icon: Shield, color: "#EF4444" },
-  { key: "codeQuality", name: "Code Quality", nameTh: "คุณภาพโค้ด", icon: Code, color: "#8D83FF" },
-  { key: "bestPractices", name: "Best Practices", nameTh: "แนวปฏิบัติ", icon: CheckCircle, color: "#22C55E" },
-  { key: "pwa", name: "PWA", nameTh: "PWA", icon: Smartphone, color: "#06B6D4" },
-  { key: "viber", name: "Viber", nameTh: "Viber", icon: MessageCircle, color: "#6C63FF" },
+  {
+    key: "accessibility",
+    name: "Accessibility",
+    nameTh: "การเข้าถึง",
+    icon: Eye,
+    color: "#F97316",
+  },
+  {
+    key: "security",
+    name: "Security",
+    nameTh: "ความปลอดภัย",
+    icon: Shield,
+    color: "#EF4444",
+  },
+  {
+    key: "codeQuality",
+    name: "Code Quality",
+    nameTh: "คุณภาพโค้ด",
+    icon: Code,
+    color: "#8D83FF",
+  },
+  {
+    key: "bestPractices",
+    name: "Best Practices",
+    nameTh: "แนวปฏิบัติ",
+    icon: CheckCircle,
+    color: "#22C55E",
+  },
+  {
+    key: "pwa",
+    name: "PWA",
+    nameTh: "PWA",
+    icon: Smartphone,
+    color: "#06B6D4",
+  },
+  {
+    key: "viber",
+    name: "Viber",
+    nameTh: "Viber",
+    icon: MessageCircle,
+    color: "#6C63FF",
+  },
 ];
 
 function getScoreColor(score: number): string {
@@ -105,13 +147,18 @@ export function OverviewTab() {
     }
   }
 
-  const criticalCount = result?.issues.filter((i) => i.severity === "critical").length ?? 0;
-  const highCount = result?.issues.filter((i) => i.severity === "high").length ?? 0;
+  const criticalCount =
+    result?.issues.filter((i) => i.severity === "critical").length ?? 0;
+  const highCount =
+    result?.issues.filter((i) => i.severity === "high").length ?? 0;
 
   return (
     <div className="space-y-6">
       {/* Scan Form */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
           <CardContent className="pt-6">
             <div className="mb-4 flex items-center gap-3">
@@ -120,7 +167,9 @@ export function OverviewTab() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Quick Scan</h3>
-                <p className="text-sm text-muted-foreground">สแกน URL เพื่อตรวจสอบคุณภาพ 360°</p>
+                <p className="text-sm text-muted-foreground">
+                  สแกน URL เพื่อตรวจสอบคุณภาพ 360°
+                </p>
               </div>
             </div>
             <form onSubmit={handleScan} className="flex gap-3">
@@ -136,8 +185,16 @@ export function OverviewTab() {
                   disabled={loading}
                 />
               </div>
-              <Button type="submit" className="h-12 px-6" disabled={!url.trim() || loading}>
-                {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ScanLine className="mr-2 h-4 w-4" />}
+              <Button
+                type="submit"
+                className="h-12 px-6"
+                disabled={!url.trim() || loading}
+              >
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <ScanLine className="mr-2 h-4 w-4" />
+                )}
                 {loading ? "Scanning..." : "Scan"}
               </Button>
             </form>
@@ -168,7 +225,9 @@ export function OverviewTab() {
                       transition={{ duration: 15, ease: "easeOut" }}
                     />
                   </div>
-                  <p className="mt-2 text-center text-xs text-muted-foreground">{scanProgress}</p>
+                  <p className="mt-2 text-center text-xs text-muted-foreground">
+                    {scanProgress}
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -225,15 +284,30 @@ export function OverviewTab() {
                 >
                   <Card>
                     <CardContent className="flex items-center gap-3 p-4">
-                      <div className="rounded-lg p-2" style={{ backgroundColor: `${stat.color}15` }}>
-                        <stat.icon className="h-5 w-5" style={{ color: stat.color }} />
+                      <div
+                        className="rounded-lg p-2"
+                        style={{ backgroundColor: `${stat.color}15` }}
+                      >
+                        <stat.icon
+                          className="h-5 w-5"
+                          style={{ color: stat.color }}
+                        />
                       </div>
                       <div>
-                        <p className="text-2xl font-bold" style={{ color: stat.color }}>
+                        <p
+                          className="text-2xl font-bold"
+                          style={{ color: stat.color }}
+                        >
                           {stat.value}
-                          {stat.suffix && <span className="text-sm font-normal text-muted-foreground">{stat.suffix}</span>}
+                          {stat.suffix && (
+                            <span className="text-sm font-normal text-muted-foreground">
+                              {stat.suffix}
+                            </span>
+                          )}
                         </p>
-                        <p className="text-xs text-muted-foreground">{stat.label}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {stat.label}
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -260,7 +334,11 @@ export function OverviewTab() {
 
             {/* Score + Radar */}
             <div className="grid gap-6 lg:grid-cols-2">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -273,7 +351,11 @@ export function OverviewTab() {
                   </CardContent>
                 </Card>
               </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -289,7 +371,11 @@ export function OverviewTab() {
             </div>
 
             {/* Phase Scores */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
               <Card>
                 <CardHeader>
                   <CardTitle>Phase Scores</CardTitle>
@@ -297,17 +383,36 @@ export function OverviewTab() {
                 <CardContent>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {phaseConfig.map((phase) => {
-                      const score = (result.scores as unknown as Record<string, number>)[phase.key] ?? 0;
+                      const score =
+                        (result.scores as unknown as Record<string, number>)[
+                          phase.key
+                        ] ?? 0;
                       const color = getScoreColor(score);
                       return (
-                        <div key={phase.key} className="rounded-xl border border-border/50 p-4">
+                        <div
+                          key={phase.key}
+                          className="rounded-xl border border-border/50 p-4"
+                        >
                           <div className="flex items-center gap-3">
-                            <div className="rounded-lg p-2" style={{ backgroundColor: `${phase.color}15` }}>
-                              <phase.icon className="h-5 w-5" style={{ color: phase.color }} />
+                            <div
+                              className="rounded-lg p-2"
+                              style={{ backgroundColor: `${phase.color}15` }}
+                            >
+                              <phase.icon
+                                className="h-5 w-5"
+                                style={{ color: phase.color }}
+                              />
                             </div>
                             <div>
-                              <p className="text-xl font-bold" style={{ color }}>{score}</p>
-                              <p className="text-xs text-muted-foreground">{phase.name}</p>
+                              <p
+                                className="text-xl font-bold"
+                                style={{ color }}
+                              >
+                                {score}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                {phase.name}
+                              </p>
                             </div>
                           </div>
                           {/* Progress bar */}
@@ -329,7 +434,11 @@ export function OverviewTab() {
             </motion.div>
 
             {/* Issues */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
               <Card>
                 <CardHeader>
                   <CardTitle>Issues Found ({result.issues.length})</CardTitle>
@@ -350,8 +459,12 @@ export function OverviewTab() {
                 <Card className="border-primary/20">
                   <CardContent className="flex items-center justify-between p-4">
                     <div>
-                      <p className="text-sm font-medium text-foreground">Share this result</p>
-                      <p className="text-xs text-muted-foreground">แชร์ผลสแกนให้ทีม</p>
+                      <p className="text-sm font-medium text-foreground">
+                        Share this result
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        แชร์ผลสแกนให้ทีม
+                      </p>
                     </div>
                     <Button
                       variant="outline"
@@ -382,15 +495,25 @@ export function OverviewTab() {
           <div className="rounded-2xl bg-primary/5 p-6">
             <ScanLine className="h-12 w-12 text-primary/40" />
           </div>
-          <h3 className="mt-4 text-lg font-semibold text-foreground">Ready to Scan</h3>
+          <h3 className="mt-4 text-lg font-semibold text-foreground">
+            Ready to Scan
+          </h3>
           <p className="mt-1 max-w-sm text-sm text-muted-foreground">
             กรอก URL ด้านบนเพื่อเริ่มตรวจสอบคุณภาพเว็บแอปพลิเคชัน 360°
           </p>
           <div className="mt-6 grid grid-cols-4 gap-3">
             {phaseConfig.slice(0, 4).map((phase) => (
-              <div key={phase.key} className="flex flex-col items-center gap-1 rounded-lg bg-muted/50 p-3">
-                <phase.icon className="h-4 w-4" style={{ color: phase.color }} />
-                <span className="text-[10px] text-muted-foreground">{phase.name}</span>
+              <div
+                key={phase.key}
+                className="flex flex-col items-center gap-1 rounded-lg bg-muted/50 p-3"
+              >
+                <phase.icon
+                  className="h-4 w-4"
+                  style={{ color: phase.color }}
+                />
+                <span className="text-[10px] text-muted-foreground">
+                  {phase.name}
+                </span>
               </div>
             ))}
           </div>
